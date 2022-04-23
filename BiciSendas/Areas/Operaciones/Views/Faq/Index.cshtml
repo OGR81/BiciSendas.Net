@@ -1,0 +1,35 @@
+﻿@using BiciSendas.Recursos
+@model BiciSendas.Areas.Operaciones.Models.Faqs.FaqIndexVM
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewData["Title"] = "Faqs";
+        
+    <!-- Todo dropdow numRegistros -->
+        <div class="col-lg-4">
+            @Html.DropDownListFor(m => m.NumPagina, Model.Paginas, new {htmlAttributtes = new {@class="form-control"}})
+        </div>
+        
+    <div id="ListaFaqs" class="col-xs-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">@FaqStrings.Identificador</th>
+          <th scope="col">@FaqStrings.Nombre</th>
+          <th scope="col">@FaqStrings.TipoAcutador</th>
+          <th scope="col">@FaqStrings.FechaModificacion</th>
+          <th scope="col">@FaqStrings.Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+         
+        </tr>
+      </tbody>
+    </table>
+    </div>
+}

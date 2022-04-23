@@ -1,0 +1,63 @@
+﻿@using BiciSendas.Recursos
+@model BiciSendas.Areas.Monitorizacion.Models.Incidencias.IncidenciaIndexVM
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewData["Title"] = "Incidencias";
+
+    <div class="container d-flex flex-column">
+        <div class="row">
+            <div class="col-lg-1 mt-auto">
+                @Html.DropDownListFor(m => m.NumPagina, Model.Paginas, new {@class="selectpicker form-control"})
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Fecha, null, new { @class="col-form-label"})
+                    <div>
+                        @Html.EditorFor(m => m.Fecha, new {htmlAttributes = new{ @class="form-control"}})
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Estado, null, new {@class="col-form-label"})
+                    <div>
+                        @Html.DropDownListFor(m => m.Estado, Model.Estados, new {@class="form-control"})
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Barrio, null, new {@class="col-form-label"})
+                    <div>
+                        @Html.EditorFor(m => m.Barrio, new {htmlAttributes = new {@class="form-control"}})
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ListaIncidencias" class="col-lg-12 mt-4">
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col" style="font-size:smaller">@IncidenciaStrings.Identificador</th>
+          <th scope="col" style="font-size:smaller">@IncidenciaStrings.Nombre</th>
+          <th scope="col" style="font-size:smaller">@IncidenciaStrings.Usuario</th>
+          <th scope="col" style="font-size:smaller">@IncidenciaStrings.Barrio</th>
+          <th scope="col" style="font-size:smaller">@IncidenciaStrings.Coordenadas</th>
+          <th scope="col" style="font-size:smaller">@IncidenciaStrings.FechaIncidencia</th>
+          <th scope="col" style="font-size:smaller">@IncidenciaStrings.Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+         
+        </tr>
+      </tbody>
+    </table>
+    </div>
+}
