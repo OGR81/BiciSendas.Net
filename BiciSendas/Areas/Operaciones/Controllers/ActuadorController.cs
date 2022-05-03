@@ -1,10 +1,8 @@
 ﻿using BiciSendas.Areas.Operaciones.Models.Actuadores;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-
-namespace BiciSendas.Areas.Operaciones.Controllers.Actuadores
+namespace BiciSendas.Areas.Operaciones.Controllers
 {
     [Area("Operaciones")]
     public class ActuadorController : Controller

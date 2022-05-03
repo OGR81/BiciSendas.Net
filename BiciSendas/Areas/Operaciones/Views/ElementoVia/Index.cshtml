@@ -1,5 +1,74 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using BiciSendas.Recursos
+@model BiciSendas.Areas.Operaciones.Models.ElementosVias.ElementoViaIndexVM
+
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewData["Title"] = "Elementos vía";
+
+    <div class="container d-flex flex-column">
+        <div class="row">
+            <div class="col-lg-4 ps-0 mb-2">
+                <div class="col-lg-3">
+                    @Html.DropDownListFor(m => m.NumPagina, Model.Paginas, new {@class="form-select"})
+                </div>
+            </div>
+            <div class="col-lg-8 d-flex align-items-end">
+                <p class="mb-0">@ElementoViaStrings.AnadirElemento</p>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-0">
+        <div class="row">
+            <div class="col-lg-4 border">
+                <table class="table">
+                  <thead >
+                    <tr>
+                      <th scope="col" style="font-size:smaller">@ElementoViaStrings.Nombre</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        
+                    </tr>
+                  </tbody>
+                </table>
+                <a asp-action="Index" class="btn btn-outline-secondary" role="button">Anterior</a>
+                <a asp-action="Index" class="btn btn-outline-secondary" role="button">Siguiente</a>
+            </div>
+            <div class="col-lg-8 pe-0">
+                <div class="border p-3">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @Html.LabelFor(m=>m.Nombre, new {htmlAttributes = new{ @class="form-control"}})
+                            @Html.EditorFor(m => m.Nombre, new {htmlAttributes = new{ @class="form-control"}})
+                            @Html.ValidationMessageFor(m => m.Nombre)
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            @Html.LabelFor(m=>m.TipoElemento, new {htmlAttributes = new{ @class="form-control"}})
+                            @Html.EditorFor(m => m.TipoElemento, new {htmlAttributes = new{ @class="form-control"}})
+                            @Html.ValidationMessageFor(m => m.TipoElemento)
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            @Html.LabelFor(m=>m.Identificador, new {htmlAttributes = new{ @class="form-control"}})
+                            @Html.EditorFor(m => m.Identificador, new {htmlAttributes = new{ @class="form-control"}})
+                            @Html.ValidationMessageFor(m => m.Identificador)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-xs-12 d-md-flex justify-content-md-end pe-0">
+                <button class="btn btn-success">Añadir</button>
+            </div>
+        </div>
+    </div>
 }

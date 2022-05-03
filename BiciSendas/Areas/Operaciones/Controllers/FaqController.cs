@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace BiciSendas.Areas.Operaciones.Controllers.Faqs
+namespace BiciSendas.Areas.Operaciones.Controllers
 {
     [Area("Operaciones")]
     public class FaqController : Controller
@@ -13,9 +13,9 @@ namespace BiciSendas.Areas.Operaciones.Controllers.Faqs
         public ActionResult Index()
         {
             FaqIndexVM model = new();
-            //model.Categoria = new();
-            //model.Categoria.Add(new SelectListItem { Value = "0", Text = "Todos" });
-            //model.Categoria = 0;
+            model.Categorias = new();
+            model.Categorias.Add(new SelectListItem { Value = "0", Text = "Todos" });
+            model.Categoria = 0;
 
             model.Paginas = new();
             model.Paginas.Add(new SelectListItem { Value = "10", Text = "10" });

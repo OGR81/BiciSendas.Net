@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using BiciSendas.Recursos
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,12 +9,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BiciSendas.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css"/>
-     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-   integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-   crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-   integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-   crossorigin=""></script>
+    <link rel="stylesheet" href="~/lib/leaflet/leaflet.css"/>
 </head>
 <body>
     <header>
@@ -28,7 +24,7 @@
                     <ul class="navbar-nav flex-grow-1">
                        <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Monitorización
+                            @GlobalStrings.Monitorizacion
                           </a>
                           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" asp-area="Monitorizacion" asp-controller="Incidencia" asp-action="Index">Incidencias</a></li>
@@ -38,7 +34,7 @@
 
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Operaciones
+                            @GlobalStrings.Operaciones
                           </a>
                           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" asp-area="Operaciones" asp-controller="Actuador" asp-action="Index">Actuadores</a></li>
@@ -46,7 +42,18 @@
                             <li><a class="dropdown-item" asp-area="Operaciones" asp-controller="Faq" asp-action="Index">FAQs</a></li>
                           </ul>
                         </li>
+                        
                     </ul>
+                </div>
+                <div id="dropdownLanguage" class="dropdown me-5">
+                      <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                          <img src="../images/flag_esp.png" alt="Español" style="width:20px; height:20px"/> ESP
+                      </a>
+
+                      <ul id="language" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#"><img src="../images/flag_cat.png" alt="Catalán" style="width:20px; height:20px"/> CAT</a></li>
+                        <li><a class="dropdown-item" href="#"><img src="../images/flag_esp.png" alt="Español" style="width:20px; height:20px"/> ESP</a></li>
+                      </ul>
                 </div>
             </div>
         </nav>
@@ -59,7 +66,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - BiciSendas - <a asp-area="Home" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - BiciSendas - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

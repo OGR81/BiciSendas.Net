@@ -22,14 +22,14 @@ namespace BiciSendas.Recursos {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class FaqStrings {
+    public class ElementoViaStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal FaqStrings() {
+        internal ElementoViaStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace BiciSendas.Recursos {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BiciSendas.Recursos.FaqStrings", typeof(FaqStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BiciSendas.Recursos.ElementoViaStrings", typeof(ElementoViaStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,11 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Añadir FAQ.
+        ///   Busca una cadena traducida similar a Añadir nuevo elemento.
         /// </summary>
-        public static string AnadirFaq {
+        public static string AnadirElemento {
             get {
-                return ResourceManager.GetString("AnadirFaq", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Categoria.
-        /// </summary>
-        public static string Categoria {
-            get {
-                return ResourceManager.GetString("Categoria", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Descripción.
-        /// </summary>
-        public static string Descripcion {
-            get {
-                return ResourceManager.GetString("Descripcion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a El campo descripción es obligatorio.
-        /// </summary>
-        public static string DescripcionObligatorio {
-            get {
-                return ResourceManager.GetString("DescripcionObligatorio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a ESTADO.
-        /// </summary>
-        public static string Estado {
-            get {
-                return ResourceManager.GetString("Estado", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a FECHA DE MODIFICACIÓN.
-        /// </summary>
-        public static string FechaModificacion {
-            get {
-                return ResourceManager.GetString("FechaModificacion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Guardar y publicar.
-        /// </summary>
-        public static string Guardar {
-            get {
-                return ResourceManager.GetString("Guardar", resourceCulture);
+                return ResourceManager.GetString("AnadirElemento", resourceCulture);
             }
         }
         
@@ -133,6 +79,15 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a El campo identificador es obligatorio.
+        /// </summary>
+        public static string IdentificadorObligatorio {
+            get {
+                return ResourceManager.GetString("IdentificadorObligatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a NOMBRE.
         /// </summary>
         public static string Nombre {
@@ -142,47 +97,29 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a OPCIONES.
+        ///   Busca una cadena traducida similar a El campo nombre es obligatorio.
         /// </summary>
-        public static string Opciones {
+        public static string NombreObligatorio {
             get {
-                return ResourceManager.GetString("Opciones", resourceCulture);
+                return ResourceManager.GetString("NombreObligatorio", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Posición.
+        ///   Busca una cadena traducida similar a TIPO DE ELEMENTO.
         /// </summary>
-        public static string Posicion {
+        public static string TipoElemento {
             get {
-                return ResourceManager.GetString("Posicion", resourceCulture);
+                return ResourceManager.GetString("TipoElemento", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a El campo posición es obligatorio.
+        ///   Busca una cadena traducida similar a El campo tipo elemento es obligatorio.
         /// </summary>
-        public static string PosicionObligatorio {
+        public static string TipoElementoObligatorio {
             get {
-                return ResourceManager.GetString("PosicionObligatorio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Título FAQ.
-        /// </summary>
-        public static string TituloFaq {
-            get {
-                return ResourceManager.GetString("TituloFaq", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a El campo título es obligatorio.
-        /// </summary>
-        public static string TituloObligatorio {
-            get {
-                return ResourceManager.GetString("TituloObligatorio", resourceCulture);
+                return ResourceManager.GetString("TipoElementoObligatorio", resourceCulture);
             }
         }
     }

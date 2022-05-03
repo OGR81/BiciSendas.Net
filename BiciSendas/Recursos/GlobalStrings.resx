@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Anterior" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
+  <data name="Monitorizacion" xml:space="preserve">
+    <value>Monitorización</value>
+  </data>
+  <data name="Operaciones" xml:space="preserve">
+    <value>Operaciones</value>
+  </data>
+  <data name="Siguient" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
   <data name="VerDetalles" xml:space="preserve">
     <value>Ver detalles</value>
   </data>

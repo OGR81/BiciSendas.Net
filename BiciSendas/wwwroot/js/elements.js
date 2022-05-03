@@ -1,4 +1,4 @@
-var bikeLines = {
+ï»¿var bikeLines = {
     "type": "FeatureCollection",
     "features": [
         {
@@ -163,6 +163,8 @@ var bikeLines = {
         }
     ]
 };
+
+
 var incidenciasList = {
     "type": "FeatureCollection",
     "features": [
@@ -190,6 +192,7 @@ var incidenciasList = {
         }
     ]
 };
+
 var puntosNegrosList = {
     "type": "FeatureCollection",
     "features": [
@@ -235,134 +238,4 @@ var puntosNegrosList = {
         }
     ]
 }
-var carriles = L.layerGroup([]);
-var incidencias = L.layerGroup([]);
-var puntosNegros = L.layerGroup([]);
-var obras = L.layerGroup([]);
-var parking = L.layerGroup([]);
-var estacionTren = L.layerGroup([]);
-var carrilBici = L.layerGroup([]);
-var talleres = L.layerGroup([]);
-
-
-function mostrarMapa() {
-    window.L_DISABLE_3D = true;
-    //var mymap = L.map('mymap').setView([41.53042945, 1.9402494], 15);
-
-    var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        id: 'osm',
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    });
-    var maptiler_satellite = L.tileLayer('https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=YdMrAsJAp5DIjM1uCn6Q', {
-        id: 'maptiler_satellite',
-        zoomOffset: -1,
-        tileSize: 512,
-        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>'
-    });
-
-    var baseMaps = {
-        "Open Street Maps": osm,
-        "Satellite": maptiler_satellite
-    }
-
-    var overlayMaps = {
-        "Carriles": carriles,
-        "Incidencias": incidencias,
-        "Puntos Negros": puntosNegros,
-        "Obras": obras,
-        "Carril Bici": carrilBici,
-        "Talleres": talleres,
-        "Parking": parking,
-        "Estacion de tren": estacionTren
-    };
-
-    var map = L.map('map', {
-        center: [41.339909, 2.041107],
-        zoom: 14,
-        layers: [osm, carriles, incidencias, puntosNegros, obras, parking, estacionTren, carrilBici, talleres], //afegir els layerGroups al mapa
-        scrollWheelZoom: false
-    });
-
-    $(window).on("resize", function () {
-        $("#map").height($(window).height() - 200);
-        map.invalidateSize();
-    }).trigger("resize");
-
-    //Afegir els mapTiles i els layerGroups a un control per a poder-los activar/desactivar
-    L.control.layers(baseMaps, overlayMaps).addTo(map);
-
-    //Crear iconos a mostrar
-    var incidenciaIcon = L.icon({
-        iconUrl: '/images/warning.png',
-        iconSize: [40, 40],
-        iconAnchor: [16, 37],
-        popupAnchor: [0, -28]
-    });
-
-    L.geoJSON(bikeLines, {
-        style: function (feature) {
-            return feature.properties && feature.properties.style;
-        },
-        onEachFeature: onEachFeatureBikeLanes
-    }).addTo(map);
-
-    L.geoJSON(incidenciasList, {
-
-        onEachFeature: onEachFeatureIncidencias,
-
-        pointToLayer: function (feature, latlng) {
-            return L.marker(latlng, { icon: incidenciaIcon });
-        }
-    }).addTo(map);
-
-    L.geoJSON(puntosNegrosList, {
-        style: {
-            weight: 2,
-            color: "#000000",
-            opacity: 0.8,
-            fillColor: "#000000",
-            fillOpacity: 0.2
-        },
-
-        onEachFeature: onEachFeaturePuntosNegros
-    }).addTo(map);
-}
-
-var popupOptions = { 'className': 'customPopUp' };
-
-// Bike Lanes
-function onEachFeatureBikeLanes(feature, layer) {
-    if (feature.properties && feature.properties.popupContent) {
-        var popupContent = feature.properties.popupContent;
-    }
-    layer.bindPopup(popupContent);
-    carriles.addLayer(layer);
-}
-
-
-
-// Incidencias
-function onEachFeatureIncidencias(feature, layer) {
-    if (feature.properties && feature.properties.popupContent) {
-        var popupContent = feature.properties.popupContent;
-    }
-    layer.bindPopup(popupContent);
-    incidencias.addLayer(layer);
-}
-
-
-
-//Puntos Negros
-function onEachFeaturePuntosNegros(feature, layer) {
-    if (feature.properties && feature.properties.popupContent) {
-        var popupContent = feature.properties.popupContent;
-    }
-    layer.bindPopup(popupContent);
-    puntosNegros.addLayer(layer);
-}
-
-
-
-
-mostrarMapa();
 

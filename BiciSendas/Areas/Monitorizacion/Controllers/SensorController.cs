@@ -2,9 +2,8 @@
 using BiciSendas.DA.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Runtime.Serialization;
 
-namespace BiciSendas.Areas.Monitorizacion.Controllers.Sensores
+namespace BiciSendas.Areas.Monitorizacion.Controllers
 {
     [Area("Monitorizacion")]
     public class SensorController : Controller

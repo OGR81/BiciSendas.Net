@@ -117,46 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AnadirFaq" xml:space="preserve">
-    <value>Añadir FAQ</value>
+  <data name="Baches" xml:space="preserve">
+    <value>Baches</value>
   </data>
-  <data name="Categoria" xml:space="preserve">
-    <value>Categoria</value>
+  <data name="Caidas" xml:space="preserve">
+    <value>Caídas</value>
   </data>
-  <data name="Descripcion" xml:space="preserve">
-    <value>Descripción</value>
+  <data name="CarrilBici" xml:space="preserve">
+    <value>Carril Bici</value>
   </data>
-  <data name="DescripcionObligatorio" xml:space="preserve">
-    <value>El campo descripción es obligatorio</value>
+  <data name="EstacionTren" xml:space="preserve">
+    <value>Estación de tren</value>
   </data>
-  <data name="Estado" xml:space="preserve">
-    <value>ESTADO</value>
+  <data name="Incidencias" xml:space="preserve">
+    <value>Incidencias</value>
   </data>
-  <data name="FechaModificacion" xml:space="preserve">
-    <value>FECHA DE MODIFICACIÓN</value>
+  <data name="Obras" xml:space="preserve">
+    <value>Obras</value>
   </data>
-  <data name="Guardar" xml:space="preserve">
-    <value>Guardar y publicar</value>
+  <data name="Parking" xml:space="preserve">
+    <value>Parking</value>
   </data>
-  <data name="Identificador" xml:space="preserve">
-    <value>IDENTIFICADOR</value>
-  </data>
-  <data name="Nombre" xml:space="preserve">
-    <value>NOMBRE</value>
-  </data>
-  <data name="Opciones" xml:space="preserve">
-    <value>OPCIONES</value>
-  </data>
-  <data name="Posicion" xml:space="preserve">
-    <value>Posición</value>
-  </data>
-  <data name="PosicionObligatorio" xml:space="preserve">
-    <value>El campo posición es obligatorio</value>
-  </data>
-  <data name="TituloFaq" xml:space="preserve">
-    <value>Título FAQ</value>
-  </data>
-  <data name="TituloObligatorio" xml:space="preserve">
-    <value>El campo título es obligatorio</value>
+  <data name="Talleres" xml:space="preserve">
+    <value>Talleres</value>
   </data>
 </root>

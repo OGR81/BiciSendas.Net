@@ -117,46 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AnadirFaq" xml:space="preserve">
-    <value>Añadir FAQ</value>
-  </data>
-  <data name="Categoria" xml:space="preserve">
-    <value>Categoria</value>
-  </data>
-  <data name="Descripcion" xml:space="preserve">
-    <value>Descripción</value>
-  </data>
-  <data name="DescripcionObligatorio" xml:space="preserve">
-    <value>El campo descripción es obligatorio</value>
-  </data>
-  <data name="Estado" xml:space="preserve">
-    <value>ESTADO</value>
-  </data>
-  <data name="FechaModificacion" xml:space="preserve">
-    <value>FECHA DE MODIFICACIÓN</value>
-  </data>
-  <data name="Guardar" xml:space="preserve">
-    <value>Guardar y publicar</value>
+  <data name="AnadirElemento" xml:space="preserve">
+    <value>Añadir nuevo elemento</value>
   </data>
   <data name="Identificador" xml:space="preserve">
     <value>IDENTIFICADOR</value>
   </data>
+  <data name="IdentificadorObligatorio" xml:space="preserve">
+    <value>El campo identificador es obligatorio</value>
+  </data>
   <data name="Nombre" xml:space="preserve">
     <value>NOMBRE</value>
   </data>
-  <data name="Opciones" xml:space="preserve">
-    <value>OPCIONES</value>
+  <data name="NombreObligatorio" xml:space="preserve">
+    <value>El campo nombre es obligatorio</value>
   </data>
-  <data name="Posicion" xml:space="preserve">
-    <value>Posición</value>
+  <data name="TipoElemento" xml:space="preserve">
+    <value>TIPO DE ELEMENTO</value>
   </data>
-  <data name="PosicionObligatorio" xml:space="preserve">
-    <value>El campo posición es obligatorio</value>
-  </data>
-  <data name="TituloFaq" xml:space="preserve">
-    <value>Título FAQ</value>
-  </data>
-  <data name="TituloObligatorio" xml:space="preserve">
-    <value>El campo título es obligatorio</value>
+  <data name="TipoElementoObligatorio" xml:space="preserve">
+    <value>El campo tipo elemento es obligatorio</value>
   </data>
 </root>

@@ -61,6 +61,24 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Actuador.
+        /// </summary>
+        public static string Actuador {
+            get {
+                return ResourceManager.GetString("Actuador", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enviar.
+        /// </summary>
+        public static string Enviar {
+            get {
+                return ResourceManager.GetString("Enviar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a FECHA DE MODIFICACIÓN.
         /// </summary>
         public static string FechaModificacion {

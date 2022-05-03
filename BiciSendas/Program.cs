@@ -23,27 +23,12 @@ app.UseAuthorization();
 app.MapAreaControllerRoute(
             name: "Monitorizacion",
             areaName: "Monitorizacion",
-            pattern: "Monitorizacion/{controller=Incidencia}/{action=Index}/{id?}");
-
-app.MapAreaControllerRoute(
-            name: "Monitorizacion",
-            areaName: "Monitorizacion",
-            pattern: "Monitorizacion/{controller=Sensor}/{action=Index}/{id?}");
-
-app.MapAreaControllerRoute(
-            name: "Operacion",
-            areaName: "Operacion",
-            pattern: "Operacion/{controller=Actuador}/{action=Index}/{id?}");
+            pattern: "Monitorizacion/{controller}/{action=Index}/{id?}");
 
 app.MapAreaControllerRoute(
             name: "Operacion",
             areaName: "Operaciones",
-            pattern: "Operaciones/{controller=ElementoVia}/{action=Index}/{id?}");
-
-app.MapAreaControllerRoute(
-            name: "Operacion",
-            areaName: "Operaciones",
-            pattern: "Operaciones/{controller=Faq}/{action=Index}/{id?}");
+            pattern: "Operaciones/{controller}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

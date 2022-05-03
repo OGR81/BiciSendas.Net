@@ -1,5 +1,4 @@
 ﻿using BiciSendas.Areas.Monitorizacion.Models.Incidencias;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
