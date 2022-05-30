@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BiciSendas.DA.Entities
+namespace BiciSendas.DA
 {
-    [Serializable]
-    public class BaseEntity
+    internal class SensorDA
     {
-        public int Id { get; set; }
     }
 }

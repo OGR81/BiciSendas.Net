@@ -123,9 +123,6 @@
   <data name="Caidas" xml:space="preserve">
     <value>Caídas</value>
   </data>
-  <data name="CarrilBici" xml:space="preserve">
-    <value>Carril Bici</value>
-  </data>
   <data name="EstacionTren" xml:space="preserve">
     <value>Estación de tren</value>
   </data>

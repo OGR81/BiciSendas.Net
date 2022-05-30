@@ -90,9 +90,9 @@ namespace BiciSendas.Recursos {
         /// <summary>
         ///   Busca una cadena traducida similar a Siguiente.
         /// </summary>
-        public static string Siguient {
+        public static string Siguiente {
             get {
-                return ResourceManager.GetString("Siguient", resourceCulture);
+                return ResourceManager.GetString("Siguiente", resourceCulture);
             }
         }
         

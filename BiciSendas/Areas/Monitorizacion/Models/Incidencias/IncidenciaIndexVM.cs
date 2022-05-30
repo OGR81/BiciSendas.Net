@@ -12,12 +12,12 @@ namespace BiciSendas.Areas.Monitorizacion.Models.Incidencias
         public DateTime? Fecha { get; set; }
 
         [Display(Name = nameof(IncidenciaStrings.EstadoFiltro), ResourceType = typeof(IncidenciaStrings))]
-        public byte? Estado { get; set; }
+        public int? Estado { get; set; }
         
-        [Display(Name = nameof(IncidenciaStrings.BarrioFiltro), ResourceType = typeof(IncidenciaStrings))]
-        public int? Barrio { get; set; }
+        [Display(Name = nameof(IncidenciaStrings.PoblacionFiltro), ResourceType = typeof(IncidenciaStrings))]
+        public string? Poblacion { get; set; }
         
-        public byte? NumPagina { get; set; }
+        public int? NumPagina { get; set; }
         public List<IncidenciaGridVM>? Incidencias { get; set; }
 
         public List<SelectListItem>? Estados { get; set; }

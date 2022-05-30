@@ -22,8 +22,8 @@
                 @Html.DropDownListFor(m => m.Estado, Model.Estados, new {@class="form-select"})
             </div>
             <div class="col-lg-1">
-                @Html.LabelFor(m => m.Barrio, null, new {@class="col-form-label"})
-                @Html.EditorFor(m => m.Barrio, new {htmlAttributes = new {@class="form-control"}})
+                @Html.LabelFor(m => m.Poblacion, null, new {@class="col-form-label"})
+                @Html.EditorFor(m => m.Poblacion, new {htmlAttributes = new {@class="form-control"}})
             </div>
         </div>
     </div>
@@ -33,22 +33,29 @@
           <thead class="table-dark">
             <tr>
               <th scope="col" style="font-size:smaller">@IncidenciaStrings.Identificador</th>
-              <th scope="col" style="font-size:smaller">@IncidenciaStrings.Nombre</th>
-              <th scope="col" style="font-size:smaller">@IncidenciaStrings.Usuario</th>
-              <th scope="col" style="font-size:smaller">@IncidenciaStrings.Barrio</th>
-              <th scope="col" style="font-size:smaller">@IncidenciaStrings.Coordenadas</th>
+              <th scope="col" style="font-size:smaller">@IncidenciaStrings.TipoIncidencia</th>
+              <th scope="col" style="font-size:smaller">@IncidenciaStrings.Poblacion</th>
+              <th scope="col" style="font-size:smaller">@IncidenciaStrings.Direccion</th>
               <th scope="col" style="font-size:smaller">@IncidenciaStrings.FechaIncidencia</th>
               <th scope="col" style="font-size:smaller">@IncidenciaStrings.Estado</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-         
-            </tr>
+            @foreach(var incidencia in Model.Incidencias!)
+                {
+                    <tr>
+                        <td>@incidencia.Identificador</td>
+                        <td>@incidencia.TipoIncidencia</td>
+                        <td>@incidencia.Poblacion</td>
+                        <td>@incidencia.Direccion</td>
+                        <td>@incidencia.FechaIncidencia</td>
+                        <td>@incidencia.Estado</td>
+                        <td><i class="fa-solid fa-pen fa-1x ms-4"></i></td>
+                    </tr> 
+                }
           </tbody>
         </table>
-        <a asp-action="Index" class="btn btn-outline-secondary" role="button">Anterior</a>
-        <a asp-action="Index" class="btn btn-outline-secondary" role="button">Siguiente</a>
     </div>
 
     <div class="modal fade" id="modalIncidencia" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -1,4 +1,8 @@
 ﻿using BiciSendas.Areas.Monitorizacion.Models.Incidencias;
+using BiciSendas.DA;
+using BiciSendas.DA.DA;
+using BiciSendas.DA.Entities;
+using BiciSendas.Views.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -7,6 +11,15 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
     [Area("Monitorizacion")]
     public class IncidenciaController : Controller
     {
+        private readonly IncidenciaDA IncidenciaDA;
+        private readonly EstadoDA EstadoDA;
+
+        public IncidenciaController(IncidenciaDA incidenciaDA, EstadoDA estadoDA)
+        {
+            this.IncidenciaDA = incidenciaDA;
+            this.EstadoDA = estadoDA;
+        }
+
         // GET: IncidenciaController
         public ActionResult Index()
         {
@@ -15,11 +28,13 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
             model.Estados.Add(new SelectListItem { Value = "0", Text = "Todos" });
             model.Estado = 0;
 
-            model.Paginas = new();
-            model.Paginas.Add(new SelectListItem { Value = "10", Text = "10" });
-            model.Paginas.Add(new SelectListItem { Value = "20", Text = "20" });
-            model.Paginas.Add(new SelectListItem { Value = "30", Text = "30" });
+            model.Paginas = Combos.ComboNumRegistros();
             model.NumPagina = 10;
+
+            var estados = ObtenerEstados();
+
+            var incidencias = ObtenerIncidencias();
+            model.Incidencias = MapearIncidenciasToVM(incidencias);
 
             return View(model);
         }
@@ -92,5 +107,48 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
                 return View();
             }
         }
+
+        private List<Incidencia> ObtenerIncidencias(){
+            return IncidenciaDA.ObtenerIncidencias();
+        }
+
+        private Task<List<Estado>> ObtenerEstados()
+        {
+            return EstadoDA.GetAllAsync();
+        }
+
+        private List<IncidenciaGridVM>? MapearIncidenciasToVM(List<Incidencia> incidencias)
+        {
+            if (!incidencias.Any())
+                return null;
+
+            List<IncidenciaGridVM> model = new List<IncidenciaGridVM>();
+
+            incidencias.ForEach(i =>
+            {
+                IncidenciaGridVM incidencia = new();
+                incidencia.Identificador = i.Id;
+                incidencia.TipoIncidencia = i.TipoIncidencia?.Nombre;
+                incidencia.Poblacion = i.Poblacion;
+                incidencia.Direccion = i.Direccion;
+                incidencia.FechaIncidencia = i.Fecha;
+                incidencia.Estado = i.Estado?.Descripcion;
+
+                model.Add(incidencia);
+            });
+
+            return model;
+        }
+
+        //private List<SelectListItem> ObtenerComboEstados()
+        //{
+        //    List<SelectListItem> combo = new();
+        //    var estados = EstadoDA.GetAllAsync();
+
+        //    foreach(Estado estado in estados)
+        //    {
+
+        //    }
+        //}
     }
 }

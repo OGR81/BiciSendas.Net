@@ -61,24 +61,6 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a BARRIO.
-        /// </summary>
-        public static string Barrio {
-            get {
-                return ResourceManager.GetString("Barrio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Barrio.
-        /// </summary>
-        public static string BarrioFiltro {
-            get {
-                return ResourceManager.GetString("BarrioFiltro", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a Buscar.
         /// </summary>
         public static string Buscar {
@@ -88,11 +70,11 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a COORDENADAS.
+        ///   Busca una cadena traducida similar a DIRECCIÓN.
         /// </summary>
-        public static string Coordenadas {
+        public static string Direccion {
             get {
-                return ResourceManager.GetString("Coordenadas", resourceCulture);
+                return ResourceManager.GetString("Direccion", resourceCulture);
             }
         }
         
@@ -142,20 +124,29 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a NOMBRE.
+        ///   Busca una cadena traducida similar a POBLACIÓN.
         /// </summary>
-        public static string Nombre {
+        public static string Poblacion {
             get {
-                return ResourceManager.GetString("Nombre", resourceCulture);
+                return ResourceManager.GetString("Poblacion", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a USUARIO.
+        ///   Busca una cadena traducida similar a Población.
         /// </summary>
-        public static string Usuario {
+        public static string PoblacionFiltro {
             get {
-                return ResourceManager.GetString("Usuario", resourceCulture);
+                return ResourceManager.GetString("PoblacionFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a TIPO DE INCIDENCIA.
+        /// </summary>
+        public static string TipoIncidencia {
+            get {
+                return ResourceManager.GetString("TipoIncidencia", resourceCulture);
             }
         }
     }

@@ -13,7 +13,11 @@ namespace BiciSendas.Areas.Operaciones.Controllers
         {
             ActuadorIndexVM model = new();
             model.TipoActuador = new();
-            model.TipoActuador.Add(new SelectListItem { Value = "0", Text = "Todos" });
+            model.TipoActuador.Add(new SelectListItem { Value = "0", Text = "" });
+            model.TipoActuador.Add(new SelectListItem { Value = "1", Text = "Identificador" });
+            model.TipoActuador.Add(new SelectListItem { Value = "2", Text = "Nombre" });
+            model.TipoActuador.Add(new SelectListItem { Value = "3", Text = "Tipo" });
+            model.TipoActuador.Add(new SelectListItem { Value = "4", Text = "Fecha de moficiación" });
 
             model.Paginas = new();
             model.Paginas.Add(new SelectListItem { Value = "10", Text = "10" });

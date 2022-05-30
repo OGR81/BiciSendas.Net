@@ -79,15 +79,6 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Carril Bici.
-        /// </summary>
-        public static string CarrilBici {
-            get {
-                return ResourceManager.GetString("CarrilBici", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a Estación de tren.
         /// </summary>
         public static string EstacionTren {

@@ -1,5 +1,12 @@
-var builder = WebApplication.CreateBuilder(args);
+using BiciSendas.DA;
+using BiciSendas.DA.DA;
+using Microsoft.EntityFrameworkCore;
 
+var builder = WebApplication.CreateBuilder(args);
+IServiceCollection serviceCollection = builder.Services.AddDbContext<BicisendasContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("BicisendasContext")));
+builder.Services.AddScoped<IncidenciaDA>();
+builder.Services.AddScoped<TipoIncidenciaDA>();
+builder.Services.AddScoped<EstadoDA>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

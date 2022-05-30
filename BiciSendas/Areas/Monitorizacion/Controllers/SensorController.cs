@@ -13,7 +13,12 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
         {
             SensorIndexVM model = new();
             model.Categorias = new();
-            model.Categorias.Add(new SelectListItem { Value = "0", Text = "Todos" });
+            model.Categorias.Add(new SelectListItem { Value = "0", Text = "" });
+            model.Categorias.Add(new SelectListItem { Value = "1", Text = "Identificador" });
+            model.Categorias.Add(new SelectListItem { Value = "2", Text = "Tipo" });
+            model.Categorias.Add(new SelectListItem { Value = "3", Text = "Población" });
+            model.Categorias.Add(new SelectListItem { Value = "4", Text = "Dirección" });
+            model.Categorias.Add(new SelectListItem { Value = "5", Text = "Fecha de modificación"});
 
             model.Sensores = MapListEntityToListGridVM(FakeData());
 
