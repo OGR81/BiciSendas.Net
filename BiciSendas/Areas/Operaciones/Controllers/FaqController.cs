@@ -14,8 +14,8 @@ namespace BiciSendas.Areas.Operaciones.Controllers
         {
             FaqIndexVM model = new();
             model.Categorias = new();
-            model.Categorias.Add(new SelectListItem { Value = "0", Text = "Todos" });
-            model.Categoria = 0;
+            model.Categorias.Add(new SelectListItem { Value = "0", Text = "" });
+            model.Categorias.Add(new SelectListItem { Value = "1", Text = "Todos" });
 
             model.Paginas = new();
             model.Paginas.Add(new SelectListItem { Value = "10", Text = "10" });

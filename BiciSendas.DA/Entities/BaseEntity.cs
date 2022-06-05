@@ -9,8 +9,6 @@ namespace BiciSendas.DA.Entities
     [Serializable]
     public class BaseEntity
     {
-        public int? Id { get; set; }
-        public string? Identificador { get; set; }
-        public string? Nombre { get; set; }
+        public int Id { get; set; }
     }
 }

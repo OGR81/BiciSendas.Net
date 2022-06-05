@@ -1,4 +1,22 @@
+using BiciSendas.BL;
+using BiciSendas.DA;
+using BiciSendas.DA.DA;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+IServiceCollection serviceCollection = builder.Services.AddDbContext<BicisendasContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("BicisendasContext")), ServiceLifetime.Transient);
+//DA
+builder.Services.AddScoped<IncidenciaDA>();
+builder.Services.AddScoped<TipoIncidenciaDA>();
+builder.Services.AddScoped<EstadoDA>();
+builder.Services.AddScoped<ActuadorDA>();
+builder.Services.AddScoped<ElementoViaDA>();
+builder.Services.AddScoped<FaqDA>();
+builder.Services.AddScoped<SensorDA>();
+//BL
+builder.Services.AddScoped<EstadoBL>();
+builder.Services.AddScoped<IncidenciaBL>();
+builder.Services.AddScoped<ElementoViaBL>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

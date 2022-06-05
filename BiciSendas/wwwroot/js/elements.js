@@ -239,3 +239,280 @@ var puntosNegrosList = {
     ]
 }
 
+var obrasList = {
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.02998, 41.35955]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Obra"
+            },
+            "id": 20
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.04852, 41.35095]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Obra"
+            },
+            "id": 21
+        }
+
+    ]
+};
+
+var talleresList = {
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.10546, 41.33432]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Taller"
+            },
+            "id": 30
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.09804, 41.32523]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Taller"
+            },
+            "id": 31
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.09323, 41.32301]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Taller"
+            },
+            "id": 32
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.09310, 41.33107]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Taller"
+            },
+            "id": 33
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.08945, 41.33181]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Taller"
+            },
+            "id": 34
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.07492, 41.36572]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Taller"
+            },
+            "id": 35
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.09551, 41.36768]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Taller"
+            },
+            "id": 36
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.10032, 41.37129]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Taller"
+            },
+            "id": 37
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.04650, 41.33291]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Taller"
+            },
+            "id": 38
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.03895, 41.33136]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Taller"
+            },
+            "id": 39
+        }
+    ]
+};
+
+var parkingList = {
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.04371, 41.35800]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Parking"
+            },
+            "id": 40
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.03410, 41.35439]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Parking"
+            },
+            "id": 41
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.04165, 41.35327]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Parking"
+            },
+            "id": 42
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.04646, 41.35298]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Parking"
+            },
+            "id": 43
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.04783, 41.33919]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Parking"
+            },
+            "id": 44
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.01281, 41.32657]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Parking"
+            },
+            "id": 45
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.01418, 41.32657]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Parking"
+            },
+            "id": 46
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.04440, 41.35232]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Parking"
+            },
+            "id": 47
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.01212, 41.32657]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Parking"
+            },
+            "id": 48
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.02929, 41.32779]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Parking"
+            },
+            "id": 49
+        }
+    ]
+};
+var estacionTrenList = {
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [2.04302, 41.35748]
+            },
+            "type": "Feature",
+            "properties": {
+                "popupContent": "Estacion"
+            },
+            "id": 50
+        }
+        
+    ]
+};

@@ -1,68 +1,73 @@
-﻿@using BiciSendas.Recursos
+﻿@using BiciSendas.Resources
+@using NonFactors.Mvc.Grid
 @model BiciSendas.Areas.Monitorizacion.Models.Incidencias.IncidenciaIndexVM
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+    }
+</style>
+
+@section Scripts {
+    <script type="module" src="~/js/incidencias.js"></script>
+    <script>
+        var cargado = false;
+    </script>
+}   
+
 @{
     ViewData["Title"] = "Incidencias";
 
     <div class="container d-flex flex-column">
         <div class="row">
-            <div class="col-lg-1 mt-auto ps-0">
-                @Html.DropDownListFor(m => m.NumPagina, Model.Paginas, new {@class="form-select"})
+            <div class="col-lg-2 ps-0">
+                @Html.LabelFor(m => m.FechaDesde, null, new { @class="col-form-label"})
+                @Html.TextBoxFor(model => model.FechaDesde, new { @type="date", @class = "form-control datepicker",  @Value = Model.FechaDesde?.ToString("dd/MM/yyyy") } )
             </div>
-            <div class="col-lg-3">
-                @Html.LabelFor(m => m.Fecha, null, new { @class="col-form-label"})
-                @Html.EditorFor(m => m.Fecha, new {htmlAttributes = new{ @class="form-control"}})
+            <div class="col-lg-2">
+                @Html.LabelFor(m => m.FechaHasta, null, new { @class="col-form-label"})
+                @Html.TextBoxFor(model => model.FechaHasta, new { @type="date", @class = "form-control datepicker",  @Value = Model.FechaHasta?.ToString("dd/MM/yyyy") } )
             </div>
             <div class="col-lg-2">
                 @Html.LabelFor(m => m.Estado, null, new {@class="col-form-label"})
                 @Html.DropDownListFor(m => m.Estado, Model.Estados, new {@class="form-select"})
             </div>
-            <div class="col-lg-1">
-                @Html.LabelFor(m => m.Barrio, null, new {@class="col-form-label"})
-                @Html.EditorFor(m => m.Barrio, new {htmlAttributes = new {@class="form-control"}})
+            <div class="col-lg-3">
+                @Html.LabelFor(m => m.Poblacion, null, new {@class="col-form-label"})
+                @Html.EditorFor(m => m.Poblacion, new {htmlAttributes = new {@class="form-control"}})
+            </div>
+            <div class="col-lg-3 mt-auto ps-0">
+                <button type="button" id="btnBuscar" class="btn btn-primary">Buscar</button>
+                <button type="button" id="btnBorrar" class="btn btn-secondary">Borrar filtros</button>
             </div>
         </div>
     </div>
 
     <div id="ListaIncidencias" class="col-xs-12 mt-4">
-        <table class="table">
-          <thead class="table-dark">
-            <tr>
-              <th scope="col" style="font-size:smaller">@IncidenciaStrings.Identificador</th>
-              <th scope="col" style="font-size:smaller">@IncidenciaStrings.Nombre</th>
-              <th scope="col" style="font-size:smaller">@IncidenciaStrings.Usuario</th>
-              <th scope="col" style="font-size:smaller">@IncidenciaStrings.Barrio</th>
-              <th scope="col" style="font-size:smaller">@IncidenciaStrings.Coordenadas</th>
-              <th scope="col" style="font-size:smaller">@IncidenciaStrings.FechaIncidencia</th>
-              <th scope="col" style="font-size:smaller">@IncidenciaStrings.Estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-         
-            </tr>
-          </tbody>
-        </table>
-        <a asp-action="Index" class="btn btn-outline-secondary" role="button">Anterior</a>
-        <a asp-action="Index" class="btn btn-outline-secondary" role="button">Siguiente</a>
+        @Html.AjaxGrid(Url.Action("CargarIncidencias", "Incidencia", new { Area = "Monitorizacion" })!)
     </div>
 
+    @* Modal detalle *@
     <div class="modal fade" id="modalIncidencia" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Nombre incidencia</h5>
+            <h5 class="modal-title" id="title">
+            </h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-                
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success">@FaqStrings.Guardar</button>
+            <div class="col-lg-12">
+                <image id="imagenIncidencia" style="height:250px; width: 100%;"></image>
+            </div>
+            <p id="fecha" class="col-lg-12" style="font-size:x-small"></p>
+            <div id="descripcion" class="col-lg-12 mt-2">
+
+            </div> 
           </div>
         </div>
       </div>

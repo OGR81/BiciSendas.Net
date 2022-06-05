@@ -1,4 +1,4 @@
-﻿@using BiciSendas.Recursos
+﻿@using BiciSendas.Resources
 
 @{
     ViewData["Title"] = "Home Page";
@@ -8,26 +8,7 @@
     <script type="module" src="~/js/home.js"></script>
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="dropdown">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown link
-              </a>
-
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </div>
-        </div>
-        <div class="col" style="text-align:right">
-            <small>Última actualización: 20/04/2022 16:40</small>
-        </div>
-    </div>
-</div>
+<link rel="stylesheet" href="~/css/home.css"/>
 
 <div class="container mt-5">
     <div class="row">
@@ -37,9 +18,9 @@
                     <i class="fas fa-bicycle fa-3x m-1"></i>
                 </div>
                 <div class="col-10" style="text-align:right">
-                    <p class="mb-0" style="font-size:large; font-weight:700">240 Bicicletas</p>
-                    <p class="mb-0" style="font-size:smaller; font-weight:600">8,2 k/h Velocidad media</p>
-                    <p class="mb-0" style="font-size:smaller; font-weight:600">40% de ocupación</p>
+                    <p class="mb-0 title-container">240 Bicicletas</p>
+                    <p class="mb-0 content-container">8,2 k/h Velocidad media</p>
+                    <p class="mb-0 content-container">40% de ocupación</p>
                 </div>
             </div>
             <div class="row bg-light mt-auto">
@@ -53,9 +34,9 @@
                     <i class="fas fa-user-circle fa-3x m-1"></i>
                 </div>
                 <div class="col-10" style="text-align:right">
-                    <p class="mb-0" style="font-size:large; font-weight:700">450 Usuarios online</p>
-                    <p class="mb-0" style="font-size:smaller; font-weight:600">120 Usuarios nuevos</p>
-                    <p class="mb-0" style="font-size:smaller; font-weight:600">&nbsp;</p>
+                    <p class="mb-0 title-container">450 Usuarios online</p>
+                    <p class="mb-0 content-container">120 Usuarios nuevos</p>
+                    <p class="mb-0 content-container">&nbsp;</p>
                 </div>
             </div>
             <div class="row bg-light mt-auto">
@@ -69,9 +50,9 @@
                     <i class="fas fa-route fa-3x m-1"></i>
                 </div>
                 <div class="col-10" style="text-align:right">
-                    <p class="mb-0" style="font-size:large; font-weight:700">10,3 km recorridos</p>
-                    <p class="mb-0" style="font-size:smaller; font-weight:600">20 Kg de CO2 compensado</p>
-                    <p class="mb-0" style="font-size:smaller; font-weight:600">&nbsp;</p>
+                    <p class="mb-0 title-container">10,3 km recorridos</p>
+                    <p class="mb-0 content-container">20 Kg de CO2 compensado</p>
+                    <p class="mb-0 content-container">&nbsp;</p>
                 </div>
             </div>
             <div class="row bg-light mt-auto">
@@ -85,9 +66,9 @@
                     <i class="fas fa-exclamation-circle fa-3x m-1"></i>
                 </div>
                 <div class="col-10" style="text-align:right">
-                    <p class="mb-0" style="font-size:large; font-weight:700">35 Incidencias</p>
-                    <p class="mb-0" style="font-size:smaller; font-weight:600">30 resueltas | 5 pendientes</p>
-                    <p class="mb-0" style="font-size:smaller; font-weight:600">15 caídas</p>
+                    <p class="mb-0 title-container">@ViewBag.TotalIncidencias Incidencias</p>
+                    <p class="mb-0 content-container">@ViewBag.IncidenciasResueltas resueltas | @ViewBag.IncidenciasPendientes pendientes</p>
+                    <p class="mb-0 content-container">@ViewBag.TotalCaidas caídas</p>
                 </div>
             </div>
             <div class="row bg-light mt-auto">

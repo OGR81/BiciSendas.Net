@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiciSendas", "BiciSendas\BiciSendas.csproj", "{333B4AD7-1FF6-40E2-9BE2-B2205003243B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BiciSendas", "BiciSendas\BiciSendas.csproj", "{333B4AD7-1FF6-40E2-9BE2-B2205003243B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiciSendas.BL", "BiciSendas.BL\BiciSendas.BL.csproj", "{CDC265C7-977A-491C-BC77-5246384CD4A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BiciSendas.BL", "BiciSendas.BL\BiciSendas.BL.csproj", "{CDC265C7-977A-491C-BC77-5246384CD4A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiciSendas.DA", "BiciSendas.DA\BiciSendas.DA.csproj", "{69C06C9D-95AC-42E9-A7A6-3C27B044801E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BiciSendas.DA", "BiciSendas.DA\BiciSendas.DA.csproj", "{69C06C9D-95AC-42E9-A7A6-3C27B044801E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiciSendas.Resources", "BiciSendas.Resources\BiciSendas.Resources.csproj", "{34447322-4F42-4C5A-988A-F655BB88FDDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{69C06C9D-95AC-42E9-A7A6-3C27B044801E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69C06C9D-95AC-42E9-A7A6-3C27B044801E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69C06C9D-95AC-42E9-A7A6-3C27B044801E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34447322-4F42-4C5A-988A-F655BB88FDDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34447322-4F42-4C5A-988A-F655BB88FDDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34447322-4F42-4C5A-988A-F655BB88FDDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34447322-4F42-4C5A-988A-F655BB88FDDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,32 @@
+﻿@model List<BiciSendas.Areas.Monitorizacion.Models.Sensores.SensorGridVM>
+@using NonFactors.Mvc.Grid
+
+@{
+    @(Html
+            .Grid(Model)
+            .Build(columns =>
+            {
+                columns.Add(model => model.Identificador);
+                columns.Add(model => model.Nombre);
+                columns.Add(model => model.Estado);
+                columns.Add(model => model.Categoria);
+                columns.Add(model => model.Coordenadas);
+                columns.Add(model => model.FechaModificacion);
+                columns.Add(model => "<button class='btnVer btn btn-primary fa-solid fa-chart-column' data-id=\"" + model.Identificador + "\">").Encoded(false).Css("text-center").AsAttributes();
+            })
+            .Using(GridFilterMode.Header)
+            .Empty("No data found")
+            .Pageable(pager =>
+            {
+                pager.PageSizes = new Dictionary<Int32, String> { { 0, "Todo" }, { 5, "5" }, { 10, "10" }, {20, "20"} };
+                pager.ShowPageSizes = true;
+                pager.PagesToDisplay = 5;
+                pager.CurrentPage = 1;
+                pager.RowsPerPage = 2;
+            })
+            .Sortable()
+            .Css("css-classes") // Overwrites all classes with the new ones
+            .AppendCss("table-hover") // Appends classes to the current ones
+        )
+}
+
