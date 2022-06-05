@@ -1,71 +1,69 @@
-﻿@using BiciSendas.Recursos
+﻿@using BiciSendas.Resources
+@using NonFactors.Mvc.Grid
 @model BiciSendas.Areas.Operaciones.Models.ElementosVias.ElementoViaIndexVM
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+    }
+</style>
+
+
+@section Scripts{
+    <script src="~/js/elementoVia.js"></script>
+}
+
+
 @{
     ViewData["Title"] = "Elementos vía";
-
+    @Html.AntiForgeryToken()
     <div class="container d-flex flex-column">
         <div class="row">
-            <div class="col-lg-4 ps-0 mb-2">
-                <div class="col-lg-3">
-                    @Html.DropDownListFor(m => m.NumPagina, Model.Paginas, new {@class="form-select"})
-                </div>
-            </div>
-            <div class="col-lg-8 d-flex align-items-end">
+            <div class="col-lg-8 d-flex align-items-end offset-lg-5">
                 <p class="mb-0">@ElementoViaStrings.AnadirElemento</p>
             </div>
         </div>
     </div>
     <div class="container mt-0">
         <div class="row">
-            <div class="col-lg-4 border">
-                <table class="table">
-                  <thead >
-                    <tr>
-                      <th scope="col" style="font-size:smaller">@ElementoViaStrings.Nombre</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                        
-                    </tr>
-                  </tbody>
-                </table>
+            <div class="col-lg-5">
+                @Html.AjaxGrid(Url.Action("CargarElementosVia", "ElementoVia", new { Area = "Operaciones" })!)
             </div>
-            <div class="col-lg-8 pe-0">
-                <div class="border p-3">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            @Html.LabelFor(m=>m.Nombre, new {htmlAttributes = new{ @class="form-control"}})
-                            @Html.EditorFor(m => m.Nombre, new {htmlAttributes = new{ @class="form-control"}})
-                            @Html.ValidationMessageFor(m => m.Nombre)
+            <div class="col-lg-7 pe-0">
+                <form id="form_elemento" class="needs-validation" novalidate" method="post">
+                    <div class="border p-3">          
+                        <div class="row">
+                            <div class="col-lg-7">
+                                @Html.LabelFor(m=>m.Nombre, new {htmlAttributes = new{ @class="form-control"}})
+                                @Html.EditorFor(m => m.Nombre, new {htmlAttributes = new{ @class="form-control"}})
+                                @Html.ValidationMessageFor(model => model.Nombre, null, new { @class = "text-danger" })
+                            </div>
                         </div>
+                        <div class="row mt-3">
+                            <div class="col-lg-7">
+                                @Html.LabelFor(m=>m.TipoElemento, new {htmlAttributes = new{ @class="form-control"}})
+                                @Html.EditorFor(m => m.TipoElemento, new {htmlAttributes = new{ @class="form-control"}})
+                                @Html.ValidationMessageFor(m => m.TipoElemento, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-lg-7">
+                                @Html.LabelFor(m=>m.Identificador, new {htmlAttributes = new{ @class="form-control"}})
+                                @Html.EditorFor(m => m.Identificador, new {htmlAttributes = new{ @class="form-control"}})
+                                @Html.ValidationMessageFor(m => m.Identificador, null, new { @class = "text-danger" })
+                            </div>
+                        </div>    
                     </div>
                     <div class="row mt-3">
-                        <div class="col-lg-6">
-                            @Html.LabelFor(m=>m.TipoElemento, new {htmlAttributes = new{ @class="form-control"}})
-                            @Html.EditorFor(m => m.TipoElemento, new {htmlAttributes = new{ @class="form-control"}})
-                            @Html.ValidationMessageFor(m => m.TipoElemento)
+                        <div class="col-xs-12 d-md-flex justify-content-md-end">
+                            <button type="submit" id="btnGuardar" class="btn btn-primary" onclick="guardarElementoVia()">@ElementoViaStrings.BtnAñadir</button>
                         </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-lg-6">
-                            @Html.LabelFor(m=>m.Identificador, new {htmlAttributes = new{ @class="form-control"}})
-                            @Html.EditorFor(m => m.Identificador, new {htmlAttributes = new{ @class="form-control"}})
-                            @Html.ValidationMessageFor(m => m.Identificador)
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-xs-12 d-md-flex justify-content-md-end pe-0">
-                <button class="btn btn-success">Añadir</button>
+                </form>
             </div>
         </div>
     </div>

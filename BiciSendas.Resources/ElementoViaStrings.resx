@@ -117,19 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Anterior" xml:space="preserve">
-    <value>Anterior</value>
+  <data name="AnadirElemento" xml:space="preserve">
+    <value>Añadir nuevo elemento</value>
   </data>
-  <data name="Monitorizacion" xml:space="preserve">
-    <value>Monitorització</value>
+  <data name="BtnAñadir" xml:space="preserve">
+    <value>Añadir</value>
   </data>
-  <data name="Operaciones" xml:space="preserve">
-    <value>Operacions</value>
+  <data name="ErrorIdentificadorYaExiste" xml:space="preserve">
+    <value>Ya existe un elemento de vía con el mismo identificador</value>
   </data>
-  <data name="Siguiente" xml:space="preserve">
-    <value>Següent</value>
+  <data name="ErrorLongitudIdentificador" xml:space="preserve">
+    <value>El campo identificador supera la longitud máxima (50 caracteres)</value>
   </data>
-  <data name="VerDetalles" xml:space="preserve">
-    <value>Veure detalls</value>
+  <data name="ErrorLongitudNombre" xml:space="preserve">
+    <value>El campo nombre supera la longitud máxima (50 caracteres)</value>
+  </data>
+  <data name="ErrorLongitudTipoElemento" xml:space="preserve">
+    <value>El campo tipo elemento supera la longitud máxima (50 caracteres)</value>
+  </data>
+  <data name="ErrorNombreYaExiste" xml:space="preserve">
+    <value>Ya existe un elemento de vía con el mismo nombre</value>
+  </data>
+  <data name="Identificador" xml:space="preserve">
+    <value>IDENTIFICADOR</value>
+  </data>
+  <data name="IdentificadorObligatorio" xml:space="preserve">
+    <value>El campo identificador es obligatorio</value>
+  </data>
+  <data name="Nombre" xml:space="preserve">
+    <value>NOMBRE</value>
+  </data>
+  <data name="NombreObligatorio" xml:space="preserve">
+    <value>El campo nombre es obligatorio</value>
+  </data>
+  <data name="TipoElemento" xml:space="preserve">
+    <value>TIPO DE ELEMENTO</value>
+  </data>
+  <data name="TipoElementoObligatorio" xml:space="preserve">
+    <value>El campo tipo elemento es obligatorio</value>
   </data>
 </root>

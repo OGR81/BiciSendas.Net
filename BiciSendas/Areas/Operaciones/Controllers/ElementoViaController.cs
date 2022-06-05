@@ -1,4 +1,6 @@
 ﻿using BiciSendas.Areas.Operaciones.Models.ElementosVias;
+using BiciSendas.BL;
+using BiciSendas.DA.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -7,86 +9,93 @@ namespace BiciSendas.Areas.Operaciones.Controllers
     [Area("Operaciones")]
     public class ElementoViaController: Controller
     {
+        private readonly ElementoViaBL ElementoViaBL;
+
+        public ElementoViaController(ElementoViaBL elementoViaBL)
+        {
+            ElementoViaBL = elementoViaBL;
+        }
+
         // GET: ElementoViaController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             ElementoViaIndexVM model = new();
-            model.Paginas = new();
-            model.Paginas.Add(new SelectListItem { Value = "10", Text = "10" });
-            model.Paginas.Add(new SelectListItem { Value = "20", Text = "20" });
-            model.Paginas.Add(new SelectListItem { Value = "30", Text = "30" });
-            model.NumPagina = 10;
 
             return View(model);
         }
 
-        // GET: ElementoViaController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public PartialViewResult CargarElementosVia()
         {
-            return View();
+            List<ElementoVia> elementos = ElementoViaBL.ObtenerElementosVia().Result;
+            List<ElementoViaGridVM>? items = MapearElementosViaToVM(elementos);
+
+            return PartialView("_GridElementoVia", items ?? new());
         }
 
-        // GET: ElementoViaController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ElementoViaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Grabar(ElementoViaIndexVM model)
+        {
+            if (!ModelState.IsValid) 
+                return Json(new { success = false});
+
+            ElementoVia elementoVia = MapearElementoViaVMToEntity(model);
+
+            List<string> errores = ElementoViaBL.Validar(elementoVia);
+
+            if (errores.Any())
+            {
+                return Json(new { success = false, errors = errores });
+            }
+
+            await ElementoViaBL.Grabar(elementoVia);
+
+            return Json(new { success = true });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Eliminar(int idElementoVia)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                await ElementoViaBL.Eliminar(idElementoVia);
+
+                return Json(new { success = true });
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return Json(ex);
             }
         }
 
-        // GET: ElementoViaController/Edit/5
-        public ActionResult Edit(int id)
+        private ElementoVia MapearElementoViaVMToEntity(ElementoViaIndexVM model)
         {
-            return View();
+            ElementoVia elementoVia = new();
+            elementoVia.Identificador = model.Identificador?.Replace("'", "´").Trim();
+            elementoVia.Nombre = model.Nombre?.Replace("'","´").Trim();
+            elementoVia.TipoElemento = model.Nombre?.Replace("'", "´").Trim();
+
+            return elementoVia;
         }
 
-        // POST: FaqCoElementoViaControllerntroller/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        private List<ElementoViaGridVM>? MapearElementosViaToVM(List<ElementoVia> elementos)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+            if (!elementos.Any())
+                return null;
 
-        // GET: ElementoViaController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+            List<ElementoViaGridVM> model = new();
 
-        // POST: ElementoViaController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
+            elementos.ForEach(e =>
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                ElementoViaGridVM elemento = new();
+                elemento.Id = e.IdElementoVia;
+                elemento.Nombre = e.Nombre!.ToUpper();
+
+                model.Add(elemento);
+            });
+
+            return model;
         }
     }
 }

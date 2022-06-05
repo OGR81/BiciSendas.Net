@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace BiciSendas.DA.Entities
 {
     [Serializable]
-    public class Estado : BaseEntity
+    public class Estado
     {
-        public string? Descripcion { get; }
+        public int IdEstado { get; set; }
+        public string? Descripcion { get; private set; }
     }
 }

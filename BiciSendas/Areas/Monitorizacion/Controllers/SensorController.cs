@@ -2,6 +2,7 @@
 using BiciSendas.DA.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace BiciSendas.Areas.Monitorizacion.Controllers
 {
@@ -21,12 +22,6 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
             model.Categorias.Add(new SelectListItem { Value = "5", Text = "Fecha de modificación"});
 
             model.Sensores = MapListEntityToListGridVM(FakeData());
-
-            model.Paginas = new();
-            model.Paginas.Add(new SelectListItem { Value = "10", Text = "10" });
-            model.Paginas.Add(new SelectListItem { Value = "20", Text = "20" });
-            model.Paginas.Add(new SelectListItem { Value = "30", Text = "30" });
-            model.NumPagina = 10;
 
             return View(model);
         }
@@ -123,6 +118,15 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
             });
 
             return list;
+        }
+
+        [HttpGet]
+        public PartialViewResult CargarSensores(int idCategoria)
+        {
+            //TODO: Cambiar PartialViewResult por async Task<PartialViewResult>
+            //      Obtener los sensores desde la api y pasarlos a la grid
+            List<SensorGridVM>? items = new();
+            return PartialView("_GridSensores", items);
         }
 
         #region FAKE DATA

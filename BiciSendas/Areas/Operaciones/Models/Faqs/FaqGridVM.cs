@@ -1,4 +1,4 @@
-﻿using BiciSendas.Recursos;
+﻿using BiciSendas.Resources;
 using System.ComponentModel.DataAnnotations;
 
 namespace BiciSendas.Areas.Operaciones.Models.Faqs

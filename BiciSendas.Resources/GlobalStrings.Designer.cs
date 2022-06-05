@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BiciSendas.Recursos {
+namespace BiciSendas.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace BiciSendas.Recursos {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class IncidenciaStrings {
+    public class GlobalStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal IncidenciaStrings() {
+        internal GlobalStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace BiciSendas.Recursos {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BiciSendas.Recursos.IncidenciaStrings", typeof(IncidenciaStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BiciSendas.Resources.GlobalStrings", typeof(GlobalStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,92 +61,47 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Buscar.
+        ///   Busca una cadena traducida similar a Anterior.
         /// </summary>
-        public static string Buscar {
+        public static string Anterior {
             get {
-                return ResourceManager.GetString("Buscar", resourceCulture);
+                return ResourceManager.GetString("Anterior", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a DIRECCIÓN.
+        ///   Busca una cadena traducida similar a Monitorización.
         /// </summary>
-        public static string Direccion {
+        public static string Monitorizacion {
             get {
-                return ResourceManager.GetString("Direccion", resourceCulture);
+                return ResourceManager.GetString("Monitorizacion", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a ESTADO.
+        ///   Busca una cadena traducida similar a Operaciones.
         /// </summary>
-        public static string Estado {
+        public static string Operaciones {
             get {
-                return ResourceManager.GetString("Estado", resourceCulture);
+                return ResourceManager.GetString("Operaciones", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Estado.
+        ///   Busca una cadena traducida similar a Siguiente.
         /// </summary>
-        public static string EstadoFiltro {
+        public static string Siguiente {
             get {
-                return ResourceManager.GetString("EstadoFiltro", resourceCulture);
+                return ResourceManager.GetString("Siguiente", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Fecha.
+        ///   Busca una cadena traducida similar a Ver detalles.
         /// </summary>
-        public static string FechaFiltro {
+        public static string VerDetalles {
             get {
-                return ResourceManager.GetString("FechaFiltro", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a FECHA DE INCIDENCIA.
-        /// </summary>
-        public static string FechaIncidencia {
-            get {
-                return ResourceManager.GetString("FechaIncidencia", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a IDENTIFICADOR.
-        /// </summary>
-        public static string Identificador {
-            get {
-                return ResourceManager.GetString("Identificador", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a POBLACIÓN.
-        /// </summary>
-        public static string Poblacion {
-            get {
-                return ResourceManager.GetString("Poblacion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Población.
-        /// </summary>
-        public static string PoblacionFiltro {
-            get {
-                return ResourceManager.GetString("PoblacionFiltro", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a TIPO DE INCIDENCIA.
-        /// </summary>
-        public static string TipoIncidencia {
-            get {
-                return ResourceManager.GetString("TipoIncidencia", resourceCulture);
+                return ResourceManager.GetString("VerDetalles", resourceCulture);
             }
         }
     }

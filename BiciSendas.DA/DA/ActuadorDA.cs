@@ -9,7 +9,7 @@ using System.Text.Json;
 
 namespace BiciSendas.DA
 {
-    internal class ActuadoresDA
+    public class ActuadorDA
     {
     }
 }

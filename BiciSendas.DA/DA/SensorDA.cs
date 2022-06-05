@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BiciSendas.DA
 {
-    internal class SensorDA
+    public class SensorDA
     {
     }
 }

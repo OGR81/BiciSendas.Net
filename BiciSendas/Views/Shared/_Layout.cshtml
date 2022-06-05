@@ -1,4 +1,4 @@
-﻿@using BiciSendas.Recursos
+﻿@using BiciSendas.Resources
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="~/BiciSendas.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css"/>
     <link rel="stylesheet" href="~/lib/leaflet/leaflet.css"/>
+    <link rel="stylesheet" href="~/css/mvc-grid/mvc-grid.css">
+    <link rel="stylesheet" href="~/css/sweetalert2.css"/>
+    <link rel="stylesheet" href="~/lib/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="~/lib/toastr.js/toastr.css"/>
 </head>
 <body>
     <header>
@@ -69,11 +73,19 @@
             &copy; 2022 - BiciSendas - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/js/limonte-sweetalert2/sweetalert2.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <link rel="stylesheet" href="~/lib/leaflet/leaflet.css" />
     <script src="~/lib/leaflet/leaflet.js"></script>
+    <script src="~/js/mvc-grid/mvc-grid.js"></script>
+    <script>
+           document.querySelectorAll(".mvc-grid").forEach(element => new MvcGrid(element));
+    </script>
+    <script src="~/lib/toastr.js/toastr.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

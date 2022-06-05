@@ -9,7 +9,7 @@ using System.Text.Json;
 
 namespace BiciSendas.DA
 {
-    internal class FaqDA
+    public class FaqDA
     {
     }
 }

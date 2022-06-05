@@ -1,4 +1,5 @@
-﻿@using BiciSendas.Recursos
+﻿@using BiciSendas.Resources
+@using NonFactors.Mvc.Grid
 @model BiciSendas.Areas.Monitorizacion.Models.Sensores.SensorIndexVM
 
 @{
@@ -10,10 +11,7 @@
     
     <div class="container d-flex flex-column">
         <div class="row">
-            <div class="col-lg-1 mt-auto ps-0">
-                @Html.DropDownListFor(m => m.NumPagina, Model.Paginas, new {@class="form-select"})
-            </div>
-            <div class="col-lg-2">
+            <div class="col-lg-2 ps-0">
                 @Html.LabelFor(m => m.Categorias, null, new { @class="col-form-label"})
                 @Html.DropDownListFor(m => m.Categoria, Model.Categorias, new{ @class="form-select"})
             </div>
@@ -21,33 +19,7 @@
     </div>
 
     <div id="ListaSensores" class="col-lg-12 mt-4">
-        <table class="table">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col" style="font-size:smaller">@SensorStrings.Identificador</th>
-                    <th scope="col" style="font-size:smaller">@SensorStrings.Nombre</th>
-                    <th scope="col" style="font-size:smaller">@SensorStrings.Estado</th>
-                    <th scope="col" style="font-size:smaller">@SensorStrings.Categoria</th>
-                    <th scope="col" style="font-size:smaller">@SensorStrings.Coordenadas</th>
-                    <th scope="col" style="font-size:smaller">@SensorStrings.FechaModificacion</th>
-                    <th scope="col" style="font-size:smaller">@SensorStrings.Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach(var sensor in Model.Sensores!)
-                {
-                    <tr>
-                        <td>@sensor.Identificador</td>
-                        <td>@sensor.Nombre</td>
-                        <td>@sensor.Estado</td>
-                        <td>@sensor.Categoria</td>
-                        <td>@sensor.Coordenadas</td>
-                        <td>@sensor.FechaModificacion</td>
-                        <td><i class="fa-solid fa-chart-column fa-1x ms-4"></i></td>
-                    </tr> 
-                }
-            </tbody>
-        </table>
+        @Html.AjaxGrid(Url.Action("CargarSensores", "Sensor", new { Area = "Monitorizacion" })!)
     </div>
     @*modal gráfico*@
 }

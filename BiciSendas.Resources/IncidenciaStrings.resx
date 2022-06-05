@@ -129,8 +129,11 @@
   <data name="EstadoFiltro" xml:space="preserve">
     <value>Estado</value>
   </data>
-  <data name="FechaFiltro" xml:space="preserve">
-    <value>Fecha</value>
+  <data name="FechaDesdeFiltro" xml:space="preserve">
+    <value>Desde</value>
+  </data>
+  <data name="FechaHastaFiltro" xml:space="preserve">
+    <value>Hasta</value>
   </data>
   <data name="FechaIncidencia" xml:space="preserve">
     <value>FECHA DE INCIDENCIA</value>

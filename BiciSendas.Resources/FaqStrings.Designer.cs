@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BiciSendas.Recursos {
+namespace BiciSendas.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace BiciSendas.Recursos {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ActuadorStrings {
+    public class FaqStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ActuadorStrings() {
+        internal FaqStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace BiciSendas.Recursos {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BiciSendas.Recursos.ActuadorStrings", typeof(ActuadorStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BiciSendas.Resources.FaqStrings", typeof(FaqStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,47 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Actuador.
+        ///   Busca una cadena traducida similar a Añadir FAQ.
         /// </summary>
-        public static string Actuador {
+        public static string AnadirFaq {
             get {
-                return ResourceManager.GetString("Actuador", resourceCulture);
+                return ResourceManager.GetString("AnadirFaq", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Enviar.
+        ///   Busca una cadena traducida similar a Categoria.
         /// </summary>
-        public static string Enviar {
+        public static string Categoria {
             get {
-                return ResourceManager.GetString("Enviar", resourceCulture);
+                return ResourceManager.GetString("Categoria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Descripción.
+        /// </summary>
+        public static string Descripcion {
+            get {
+                return ResourceManager.GetString("Descripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El campo descripción es obligatorio.
+        /// </summary>
+        public static string DescripcionObligatorio {
+            get {
+                return ResourceManager.GetString("DescripcionObligatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ESTADO.
+        /// </summary>
+        public static string Estado {
+            get {
+                return ResourceManager.GetString("Estado", resourceCulture);
             }
         }
         
@@ -84,6 +111,15 @@ namespace BiciSendas.Recursos {
         public static string FechaModificacion {
             get {
                 return ResourceManager.GetString("FechaModificacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Guardar y publicar.
+        /// </summary>
+        public static string Guardar {
+            get {
+                return ResourceManager.GetString("Guardar", resourceCulture);
             }
         }
         
@@ -115,11 +151,38 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a TIPO ACTUADOR.
+        ///   Busca una cadena traducida similar a Posición.
         /// </summary>
-        public static string TipoActuador {
+        public static string Posicion {
             get {
-                return ResourceManager.GetString("TipoActuador", resourceCulture);
+                return ResourceManager.GetString("Posicion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El campo posición es obligatorio.
+        /// </summary>
+        public static string PosicionObligatorio {
+            get {
+                return ResourceManager.GetString("PosicionObligatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Título FAQ.
+        /// </summary>
+        public static string TituloFaq {
+            get {
+                return ResourceManager.GetString("TituloFaq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El campo título es obligatorio.
+        /// </summary>
+        public static string TituloObligatorio {
+            get {
+                return ResourceManager.GetString("TituloObligatorio", resourceCulture);
             }
         }
     }

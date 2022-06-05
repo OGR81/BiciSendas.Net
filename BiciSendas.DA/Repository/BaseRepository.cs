@@ -13,7 +13,7 @@ namespace BiciSendas.DA.Repository
 
         public BaseRepository(DbContext dbContext)
         {
-            DbContext = dbContext;  
+            DbContext = dbContext;
         }
 
         public async Task Add(T entity)
@@ -28,19 +28,19 @@ namespace BiciSendas.DA.Repository
             await DbContext.SaveChangesAsync();
         }
 
-        public Task<List<T>> GetAllAsync()
+        public virtual async Task<List<T>> GetAllAsync()
         {
-            return DbContext.Set<T>().ToListAsync();
+            return await DbContext.Set<T>().ToListAsync();
         }
 
-        public async Task<T?> GetById(int id)
+        public List<T> GetAll()
+        {
+            return DbContext.Set<T>().ToList();
+        }
+
+        public virtual async Task<T?> GetById(int id)
         {
             return await DbContext.Set<T>().FindAsync(id);
-        }
-
-        public Task<T?> GetById(Guid id)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task Update(T entity)

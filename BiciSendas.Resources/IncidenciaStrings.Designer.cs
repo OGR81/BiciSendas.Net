@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BiciSendas.Recursos {
+namespace BiciSendas.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace BiciSendas.Recursos {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class SensorStrings {
+    public class IncidenciaStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal SensorStrings() {
+        internal IncidenciaStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace BiciSendas.Recursos {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BiciSendas.Recursos.SensorStrings", typeof(SensorStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BiciSendas.Resources.IncidenciaStrings", typeof(IncidenciaStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,20 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a CATEGORÍA.
+        ///   Busca una cadena traducida similar a Buscar.
         /// </summary>
-        public static string Categoria {
+        public static string Buscar {
             get {
-                return ResourceManager.GetString("Categoria", resourceCulture);
+                return ResourceManager.GetString("Buscar", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a COORDENADAS.
+        ///   Busca una cadena traducida similar a DIRECCIÓN.
         /// </summary>
-        public static string Coordenadas {
+        public static string Direccion {
             get {
-                return ResourceManager.GetString("Coordenadas", resourceCulture);
+                return ResourceManager.GetString("Direccion", resourceCulture);
             }
         }
         
@@ -88,11 +88,38 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a FECHA DE MODIFICACIÓN.
+        ///   Busca una cadena traducida similar a Estado.
         /// </summary>
-        public static string FechaModificacion {
+        public static string EstadoFiltro {
             get {
-                return ResourceManager.GetString("FechaModificacion", resourceCulture);
+                return ResourceManager.GetString("EstadoFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Desde.
+        /// </summary>
+        public static string FechaDesdeFiltro {
+            get {
+                return ResourceManager.GetString("FechaDesdeFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Hasta.
+        /// </summary>
+        public static string FechaHastaFiltro {
+            get {
+                return ResourceManager.GetString("FechaHastaFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a FECHA DE INCIDENCIA.
+        /// </summary>
+        public static string FechaIncidencia {
+            get {
+                return ResourceManager.GetString("FechaIncidencia", resourceCulture);
             }
         }
         
@@ -106,20 +133,29 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a NOMBRE.
+        ///   Busca una cadena traducida similar a POBLACIÓN.
         /// </summary>
-        public static string Nombre {
+        public static string Poblacion {
             get {
-                return ResourceManager.GetString("Nombre", resourceCulture);
+                return ResourceManager.GetString("Poblacion", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a OPCIONES.
+        ///   Busca una cadena traducida similar a Población.
         /// </summary>
-        public static string Opciones {
+        public static string PoblacionFiltro {
             get {
-                return ResourceManager.GetString("Opciones", resourceCulture);
+                return ResourceManager.GetString("PoblacionFiltro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a TIPO DE INCIDENCIA.
+        /// </summary>
+        public static string TipoIncidencia {
+            get {
+                return ResourceManager.GetString("TipoIncidencia", resourceCulture);
             }
         }
     }

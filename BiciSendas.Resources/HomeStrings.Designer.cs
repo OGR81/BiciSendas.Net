@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BiciSendas.Recursos {
+namespace BiciSendas.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace BiciSendas.Recursos {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class GlobalStrings {
+    public class HomeStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal GlobalStrings() {
+        internal HomeStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace BiciSendas.Recursos {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BiciSendas.Recursos.GlobalStrings", typeof(GlobalStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BiciSendas.Resources.HomeStrings", typeof(HomeStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,65 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Anterior.
+        ///   Busca una cadena traducida similar a Baches.
         /// </summary>
-        public static string Anterior {
+        public static string Baches {
             get {
-                return ResourceManager.GetString("Anterior", resourceCulture);
+                return ResourceManager.GetString("Baches", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Monitorización.
+        ///   Busca una cadena traducida similar a Caídas.
         /// </summary>
-        public static string Monitorizacion {
+        public static string Caidas {
             get {
-                return ResourceManager.GetString("Monitorizacion", resourceCulture);
+                return ResourceManager.GetString("Caidas", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Operaciones.
+        ///   Busca una cadena traducida similar a Estación de tren.
         /// </summary>
-        public static string Operaciones {
+        public static string EstacionTren {
             get {
-                return ResourceManager.GetString("Operaciones", resourceCulture);
+                return ResourceManager.GetString("EstacionTren", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Siguiente.
+        ///   Busca una cadena traducida similar a Incidencias.
         /// </summary>
-        public static string Siguiente {
+        public static string Incidencias {
             get {
-                return ResourceManager.GetString("Siguiente", resourceCulture);
+                return ResourceManager.GetString("Incidencias", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Ver detalles.
+        ///   Busca una cadena traducida similar a Obras.
         /// </summary>
-        public static string VerDetalles {
+        public static string Obras {
             get {
-                return ResourceManager.GetString("VerDetalles", resourceCulture);
+                return ResourceManager.GetString("Obras", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Parking.
+        /// </summary>
+        public static string Parking {
+            get {
+                return ResourceManager.GetString("Parking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Talleres.
+        /// </summary>
+        public static string Talleres {
+            get {
+                return ResourceManager.GetString("Talleres", resourceCulture);
             }
         }
     }

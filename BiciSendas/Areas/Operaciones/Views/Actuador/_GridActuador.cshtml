@@ -1,0 +1,30 @@
+﻿@model List<BiciSendas.Areas.Operaciones.Models.Actuadores.ActuadorGridVM>
+@using NonFactors.Mvc.Grid
+
+@{
+    @(Html
+            .Grid(Model)
+            .Build(columns =>
+            {
+                columns.Add(model => model.Identificador);
+                columns.Add(model => model.Nombre);
+                columns.Add(model => model.TipoActuador);
+                columns.Add(model => model.FechaModificacion);
+                columns.Add(model => "<button class='btnEliminar btn btn-primary fa-solid fa-trash' data-id=\"" + model.Identificador + "\">").Encoded(false).Css("text-center").AsAttributes();
+            })
+            .Using(GridFilterMode.Header)
+            .Empty("No data found")
+            .Pageable(pager =>
+            {
+                pager.PageSizes = new Dictionary<Int32, String> { { 0, "Todo" }, { 5, "5" }, { 10, "10" }, {20, "20"} };
+                pager.ShowPageSizes = true;
+                pager.PagesToDisplay = 5;
+                pager.CurrentPage = 1;
+                pager.RowsPerPage = 2;
+            })
+            .Sortable()
+            .Css("css-classes") // Overwrites all classes with the new ones
+            .AppendCss("table-hover") // Appends classes to the current ones
+        )
+}
+

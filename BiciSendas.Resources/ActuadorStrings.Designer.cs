@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BiciSendas.Recursos {
+namespace BiciSendas.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace BiciSendas.Recursos {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ElementoViaStrings {
+    public class ActuadorStrings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ElementoViaStrings() {
+        internal ActuadorStrings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace BiciSendas.Recursos {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BiciSendas.Recursos.ElementoViaStrings", typeof(ElementoViaStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BiciSendas.Resources.ActuadorStrings", typeof(ActuadorStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,29 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Añadir nuevo elemento.
+        ///   Busca una cadena traducida similar a Actuador.
         /// </summary>
-        public static string AnadirElemento {
+        public static string Actuador {
             get {
-                return ResourceManager.GetString("AnadirElemento", resourceCulture);
+                return ResourceManager.GetString("Actuador", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enviar.
+        /// </summary>
+        public static string Enviar {
+            get {
+                return ResourceManager.GetString("Enviar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a FECHA DE MODIFICACIÓN.
+        /// </summary>
+        public static string FechaModificacion {
+            get {
+                return ResourceManager.GetString("FechaModificacion", resourceCulture);
             }
         }
         
@@ -79,15 +97,6 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a El campo identificador es obligatorio.
-        /// </summary>
-        public static string IdentificadorObligatorio {
-            get {
-                return ResourceManager.GetString("IdentificadorObligatorio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a NOMBRE.
         /// </summary>
         public static string Nombre {
@@ -97,29 +106,20 @@ namespace BiciSendas.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a El campo nombre es obligatorio.
+        ///   Busca una cadena traducida similar a OPCIONES.
         /// </summary>
-        public static string NombreObligatorio {
+        public static string Opciones {
             get {
-                return ResourceManager.GetString("NombreObligatorio", resourceCulture);
+                return ResourceManager.GetString("Opciones", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a TIPO DE ELEMENTO.
+        ///   Busca una cadena traducida similar a TIPO ACTUADOR.
         /// </summary>
-        public static string TipoElemento {
+        public static string TipoActuador {
             get {
-                return ResourceManager.GetString("TipoElemento", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a El campo tipo elemento es obligatorio.
-        /// </summary>
-        public static string TipoElementoObligatorio {
-            get {
-                return ResourceManager.GetString("TipoElementoObligatorio", resourceCulture);
+                return ResourceManager.GetString("TipoActuador", resourceCulture);
             }
         }
     }

@@ -5,6 +5,14 @@
     {
       "library": "font-awesome@6.1.1",
       "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "limonte-sweetalert2@11.4.17",
+      "destination": "wwwroot/js/limonte-sweetalert2/"
+    },
+    {
+      "library": "toastr.js@2.1.4",
+      "destination": "wwwroot/lib/toastr.js/"
     }
   ]
 }
