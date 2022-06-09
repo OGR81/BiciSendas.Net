@@ -97,11 +97,11 @@ namespace BiciSendas.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a ESTADO.
+        ///   Busca una cadena traducida similar a FECHA ALTA.
         /// </summary>
-        public static string Estado {
+        public static string FechaAlta {
             get {
-                return ResourceManager.GetString("Estado", resourceCulture);
+                return ResourceManager.GetString("FechaAlta", resourceCulture);
             }
         }
         
@@ -133,15 +133,6 @@ namespace BiciSendas.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a NOMBRE.
-        /// </summary>
-        public static string Nombre {
-            get {
-                return ResourceManager.GetString("Nombre", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a OPCIONES.
         /// </summary>
         public static string Opciones {
@@ -165,6 +156,24 @@ namespace BiciSendas.Resources {
         public static string PosicionObligatorio {
             get {
                 return ResourceManager.GetString("PosicionObligatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a PREGUNTA.
+        /// </summary>
+        public static string PreguntasFrecuentes {
+            get {
+                return ResourceManager.GetString("PreguntasFrecuentes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a RESPUESTA.
+        /// </summary>
+        public static string Respuestas {
+            get {
+                return ResourceManager.GetString("Respuestas", resourceCulture);
             }
         }
         

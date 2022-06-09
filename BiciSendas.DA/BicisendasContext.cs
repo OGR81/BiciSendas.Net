@@ -21,6 +21,7 @@ namespace BiciSendas.DA
             modelBuilder.Entity<Estado>().HasKey(e => e.IdEstado);
             modelBuilder.Entity<TipoIncidencia>().HasKey(ti => ti.IdTipoIncidencia);
             modelBuilder.Entity<ElementoVia>().HasKey(ev => ev.IdElementoVia);
+            modelBuilder.Entity<Faq>().HasKey(f => f.IdFaq);
         }
 
         public DbSet<Incidencia> Incidencias { get; set; } = null!;

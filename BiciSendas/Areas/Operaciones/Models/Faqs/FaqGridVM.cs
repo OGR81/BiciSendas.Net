@@ -7,16 +7,22 @@ namespace BiciSendas.Areas.Operaciones.Models.Faqs
     public class FaqGridVM
     {
         [Display(Name = nameof(FaqStrings.Identificador), ResourceType = typeof(FaqStrings))]
-        public string? Identificador { get; set; }
+        public int Identificador { get; set; }
 
-        [Display(Name = nameof(FaqStrings.Nombre), ResourceType = typeof(FaqStrings))]
-        public string? Nombre { get; set; }
-        [Display(Name = nameof(FaqStrings.Estado), ResourceType = typeof(FaqStrings))]
-        public int? Estado { get; set; }
+        [Display(Name = nameof(FaqStrings.PreguntasFrecuentes), ResourceType = typeof(FaqStrings))]
+        public string? Pregunta { get; set; }
+        
+        [Display(Name = nameof(FaqStrings.Respuestas), ResourceType = typeof(FaqStrings))]
+        public string? Respuesta { get; set; }
+
         [Display(Name = nameof(FaqStrings.FechaModificacion), ResourceType = typeof(FaqStrings))]
-        public int? FechaModificacion { get; set; }
-        [Display(Name = nameof(FaqStrings.Opciones), ResourceType = typeof(FaqStrings))]
-        public string? Opciones { get; set; }
+        public DateTime? FechaModificacion { get; set; }
+
+        [Display(Name = nameof(FaqStrings.FechaAlta), ResourceType = typeof(FaqStrings))]
+        public DateTime FechaAlta { get; set; }
+        
+        [Display(Name = nameof(FaqStrings.Posicion), ResourceType = typeof(FaqStrings))]
+        public int Posicion { get; set; }
 
     }
 }

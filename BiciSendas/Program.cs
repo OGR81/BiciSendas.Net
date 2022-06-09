@@ -17,6 +17,7 @@ builder.Services.AddScoped<SensorDA>();
 builder.Services.AddScoped<EstadoBL>();
 builder.Services.AddScoped<IncidenciaBL>();
 builder.Services.AddScoped<ElementoViaBL>();
+builder.Services.AddScoped<FaqBL>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -1,98 +1,111 @@
 ﻿using BiciSendas.Areas.Operaciones.Models.Faqs;
-using Microsoft.AspNetCore.Http;
+using BiciSendas.BL;
+using BiciSendas.DA;
+using BiciSendas.DA.DA;
+using BiciSendas.DA.Entities;
+using BiciSendas.Views.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace BiciSendas.Areas.Operaciones.Controllers
 {
     [Area("Operaciones")]
     public class FaqController : Controller
     {
+        private readonly FaqBL FaqBL;
+        private static List<Faq> faqs = new();
+
+        public FaqController(FaqBL faqBL)
+        {
+            this.FaqBL = faqBL;
+        }
 
         // GET: FaqController
         public ActionResult Index()
         {
             FaqIndexVM model = new();
-            model.Categorias = new();
-            model.Categorias.Add(new SelectListItem { Value = "0", Text = "" });
-            model.Categorias.Add(new SelectListItem { Value = "1", Text = "Todos" });
-
-            model.Paginas = new();
-            model.Paginas.Add(new SelectListItem { Value = "10", Text = "10" });
-            model.Paginas.Add(new SelectListItem { Value = "20", Text = "20" });
-            model.Paginas.Add(new SelectListItem { Value = "30", Text = "30" });
-            model.NumPagina = 10;
+            
+            List<Faq> faqs = FaqBL.ObtenerFaqs().Result;
+            
+            model.Faqs = MapearFaqsToVM(faqs);
 
             return View(model);
         }
 
-        // GET: FaqController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: FaqController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: FaqController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [HttpGet]
+        public JsonResult ObtenerFaq(int idFaq)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Faq? faq = FaqBL.ObtenerPorId(idFaq).Result;
+                //FaqVM? faqVM = MapearFaqToVM(faq);
+
+                return Json("");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return Json(ex);
             }
         }
 
-        // GET: FaqController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: FaqController/Edit/5
-        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        [HttpPost]
+        public async Task<IActionResult> Grabar([FromBody] FaqVM model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                //if (model is null)
+                //    throw new ArgumentException($"{typeof(FaqVM)} no puede ser nulo");
+
+                if (!ModelState.IsValid)
+                    return Json(new { success = false });
+
+                Faq? faq = new();
+
+                if (model.IdFaq == 0)
+                {
+                    faq = await FaqBL.ObtenerPorId((int)model.IdFaq);
+                    faq!.FechaModificacion = DateTime.Now;
+                }
+                else
+                {
+                    faq.FechaAlta = DateTime.Now;
+                }
+
+                faq.Pregunta = model.Pregunta;
+                faq.Respuesta = model.Respuesta;
+                faq.Posicion = model.Posición;
+
+                await FaqBL.Guardar(faq);
+
+                return Json(new {success=true});
+
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                return Json(new { message= ex });
             }
         }
 
-        // GET: FaqController/Delete/5
-        public ActionResult Delete(int id)
+        private List<FaqGridVM>? MapearFaqsToVM(List<Faq> faqs)
         {
-            return View();
-        }
+            List<FaqGridVM> model = new List<FaqGridVM>();
 
-        // POST: FaqController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
+            faqs.ForEach(i =>
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                FaqGridVM faq = new();
+                faq.Identificador = i.IdFaq;
+                faq.Pregunta = i.Pregunta;
+                faq.Respuesta = i.Respuesta;
+                faq.FechaAlta = i.FechaAlta;
+                faq.FechaModificacion = i.FechaModificacion;
+                faq.Posicion = i.Posicion;
+                
+                model.Add(faq);
+            });
+
+            return model;
         }
     }
 }

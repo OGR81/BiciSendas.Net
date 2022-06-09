@@ -8,11 +8,7 @@ namespace BiciSendas.Areas.Operaciones.Models.Faqs
     [Serializable]
     public class FaqIndexVM
     {
-        public byte? NumPagina { get; set; }
-        public List<FaqGridVM>? Actuadores { get; set; }
-
-        [Display(Name = nameof(FaqStrings.Categoria), ResourceType = typeof(FaqStrings))]
-        public int? Categoria { get; set; }
+        public List<FaqGridVM>? Faqs { get; set; }
 
         [Display(Name = nameof(FaqStrings.TituloFaq), ResourceType = typeof(FaqStrings))]
         [Required(ErrorMessageResourceName = nameof(FaqStrings.TituloFaq), ErrorMessageResourceType = typeof(FaqStrings))]
@@ -25,8 +21,7 @@ namespace BiciSendas.Areas.Operaciones.Models.Faqs
         [Display(Name = nameof(FaqStrings.Descripcion), ResourceType = typeof(FaqStrings))]
         [Required(ErrorMessageResourceName = nameof(FaqStrings.Descripcion), ErrorMessageResourceType = typeof(FaqStrings))]
         public string? Descripcion { get; set; }
-
-        public List<SelectListItem>? Categorias { get; set; }
-        public List<SelectListItem>? Paginas { get; set; }
+    
     }
+        
 }

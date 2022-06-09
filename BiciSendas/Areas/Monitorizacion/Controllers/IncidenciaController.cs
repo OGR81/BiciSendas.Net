@@ -67,9 +67,6 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
 
         private List<IncidenciaGridVM>? MapearIncidenciasToVM(List<Incidencia> incidencias)
         {
-            if (!incidencias.Any())
-                return null;
-
             List<IncidenciaGridVM> model = new List<IncidenciaGridVM>();
 
             incidencias.ForEach(i =>
@@ -142,7 +139,7 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
 
             List<IncidenciaGridVM>? items = MapearIncidenciasToVM(incidencias);
 
-            return PartialView("_GridIncidencias", items ?? new());
+            return PartialView("_GridIncidencias", items);
         }
     }
 }

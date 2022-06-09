@@ -30,7 +30,7 @@ namespace BiciSendas.Areas.Operaciones.Controllers
             List<ElementoVia> elementos = ElementoViaBL.ObtenerElementosVia().Result;
             List<ElementoViaGridVM>? items = MapearElementosViaToVM(elementos);
 
-            return PartialView("_GridElementoVia", items ?? new());
+            return PartialView("_GridElementoVia", items);
         }
 
         [HttpPost]
@@ -81,9 +81,6 @@ namespace BiciSendas.Areas.Operaciones.Controllers
 
         private List<ElementoViaGridVM>? MapearElementosViaToVM(List<ElementoVia> elementos)
         {
-            if (!elementos.Any())
-                return null;
-
             List<ElementoViaGridVM> model = new();
 
             elementos.ForEach(e =>
