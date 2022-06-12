@@ -29,7 +29,7 @@ namespace BiciSendas.BL
 
         public async Task Eliminar(int idElementoVia)
         {
-            ElementoVia? elementoVia = DA.GetById(idElementoVia).Result;
+            ElementoVia? elementoVia = await DA.GetById(idElementoVia);
 
             if (elementoVia is null)
                 throw new Exception($"No se ha encontrado {typeof(ElementoVia)}");

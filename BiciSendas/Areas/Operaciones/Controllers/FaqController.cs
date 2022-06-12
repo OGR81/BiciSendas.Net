@@ -1,12 +1,7 @@
 ﻿using BiciSendas.Areas.Operaciones.Models.Faqs;
 using BiciSendas.BL;
-using BiciSendas.DA;
-using BiciSendas.DA.DA;
 using BiciSendas.DA.Entities;
-using BiciSendas.Views.Utils;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Newtonsoft.Json;
 
 namespace BiciSendas.Areas.Operaciones.Controllers
 {
@@ -14,34 +9,32 @@ namespace BiciSendas.Areas.Operaciones.Controllers
     public class FaqController : Controller
     {
         private readonly FaqBL FaqBL;
-        private static List<Faq> faqs = new();
 
         public FaqController(FaqBL faqBL)
         {
             this.FaqBL = faqBL;
         }
 
-        // GET: FaqController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             FaqIndexVM model = new();
             
             List<Faq> faqs = FaqBL.ObtenerFaqs().Result;
             
-            model.Faqs = MapearFaqsToVM(faqs);
+            model.Faqs = MapearFaqsToGrid(faqs);
 
             return View(model);
         }
 
         [HttpGet]
-        public JsonResult ObtenerFaq(int idFaq)
+        public async Task<IActionResult> ObtenerFaq(int idFaq)
         {
             try
             {
-                Faq? faq = FaqBL.ObtenerPorId(idFaq).Result;
-                //FaqVM? faqVM = MapearFaqToVM(faq);
+                Faq? faq = await FaqBL.ObtenerPorId(idFaq);
+                FaqVM faqVM = MapearFaqToVM(faq);
 
-                return Json("");
+                return Json(faqVM);
             }
             catch (Exception ex)
             {
@@ -51,46 +44,91 @@ namespace BiciSendas.Areas.Operaciones.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public async Task<IActionResult> Grabar([FromBody] FaqVM model)
+        public async Task<IActionResult> Grabar(FaqVM model, bool actualizarPosicion)
         {
             try
             {
-                //if (model is null)
-                //    throw new ArgumentException($"{typeof(FaqVM)} no puede ser nulo");
-
                 if (!ModelState.IsValid)
                     return Json(new { success = false });
 
-                Faq? faq = new();
+                Faq? faq = await MapearFaqVMToEntity(model);
 
-                if (model.IdFaq == 0)
-                {
-                    faq = await FaqBL.ObtenerPorId((int)model.IdFaq);
-                    faq!.FechaModificacion = DateTime.Now;
-                }
-                else
-                {
-                    faq.FechaAlta = DateTime.Now;
-                }
-
-                faq.Pregunta = model.Pregunta;
-                faq.Respuesta = model.Respuesta;
-                faq.Posicion = model.Posición;
-
-                await FaqBL.Guardar(faq);
+                await FaqBL.Guardar(faq, actualizarPosicion);
 
                 return Json(new {success=true});
 
             }
             catch(Exception ex)
             {
-                return Json(new { message= ex });
+                return Json(new {success=false, message= ex });
             }
         }
 
-        private List<FaqGridVM>? MapearFaqsToVM(List<Faq> faqs)
+        [HttpPost]
+        public async Task<IActionResult> Eliminar(int idFaq)
         {
-            List<FaqGridVM> model = new List<FaqGridVM>();
+            try
+            {
+                await FaqBL.Eliminar(idFaq);
+
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult ComprobarPosicion(int idFaq, int posicion)
+        {
+            try
+            {
+                bool existe = FaqBL.ExistePosicion(idFaq, posicion);
+
+                return Json(existe);
+            }
+            catch(Exception ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        private async Task<Faq> MapearFaqVMToEntity(FaqVM model)
+        {
+            Faq? faq = new();
+
+            if (model.IdFaq != 0)
+            {
+                faq = await FaqBL.ObtenerPorId((int)model.IdFaq);
+                faq!.FechaModificacion = DateTime.Now;
+            }
+            else
+            {
+                faq.FechaAlta = DateTime.Now;
+            }
+
+            faq.Pregunta = model.Titulo;
+            faq.Respuesta = model.Descripcion;
+            faq.Posicion = model.Posicion!;
+
+            return faq;
+        }
+
+        private static FaqVM MapearFaqToVM(Faq? faq)
+        {
+            FaqVM faqVM = new();
+            faqVM.IdFaq = faq!.IdFaq;
+            faqVM.Titulo = faq.Pregunta;
+            faqVM.Descripcion = faq.Respuesta;
+            faqVM.Posicion = faq.Posicion;
+
+            return faqVM;
+        }
+
+        private static List<FaqGridVM>? MapearFaqsToGrid(List<Faq> faqs)
+        {
+            List<FaqGridVM> model = new();
 
             faqs.ForEach(i =>
             {

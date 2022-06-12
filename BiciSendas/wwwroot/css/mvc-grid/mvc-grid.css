@@ -33,6 +33,7 @@
     background-clip: padding-box;
     background-color: #f7f7f7;
     position: relative;
+    font-size:small;
 }
 
 .mvc-grid-table > table > thead > tr > th,
@@ -362,10 +363,10 @@
     box-sizing: content-box;
     background: #ffffff;
     padding: 0 0.25em;
-    line-height: 2.5;
+    line-height: 2;
     cursor: pointer;
     margin: 0.5em 0;
-    min-width: 2em;
+    min-width: 1.5em;
     color: #337ab7;
 }
 
@@ -394,6 +395,7 @@
 .mvc-grid-page-sizes {
     display: inline-block;
     margin-left: 0.5em;
+    font-size:small;
 }
 
 .mvc-grid-page-sizes select {

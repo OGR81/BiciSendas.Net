@@ -13,10 +13,7 @@
 </style>
 
 @section Scripts {
-    <script type="module" src="~/js/incidencias.js"></script>
-    <script>
-        var cargado = false;
-    </script>
+    <script src="~/js/incidencias.js"></script>
 }   
 
 @{
@@ -41,8 +38,8 @@
                 @Html.EditorFor(m => m.Poblacion, new {htmlAttributes = new {@class="form-control"}})
             </div>
             <div class="col-lg-3 mt-auto ps-0">
-                <button type="button" id="btnBuscar" class="btn btn-primary">Buscar</button>
-                <button type="button" id="btnBorrar" class="btn btn-secondary">Borrar filtros</button>
+                <button type="button" id="btnBuscar" class="btn btn-primary" onclick="filtrar()">Buscar</button>
+                <button type="button" id="btnBorrar" class="btn btn-secondary" onclick="resetFiltro()">Borrar filtros</button>
             </div>
         </div>
     </div>

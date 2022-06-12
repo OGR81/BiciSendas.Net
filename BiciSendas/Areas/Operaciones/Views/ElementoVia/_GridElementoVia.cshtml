@@ -8,7 +8,7 @@
             {
                 columns.Add(model => model.Id).Hidden();
                 columns.Add(model => model.Nombre);
-                columns.Add(model => "<button class='btnRemove btn btn-primary fa-solid fa-trash' data-nombre=\"" + model.Nombre + "\" data-id=\"" + model.Id + "\">").Width(20).Encoded(false).Css("text-center").AsAttributes();
+                columns.Add(model => "<button class='btnRemove btn btn-primary btn-sm fa-solid fa-trash' data-nombre=\"" + model.Nombre + "\" data-id=\"" + model.Id + "\">").Width(20).Encoded(false).Css("text-center").AsAttributes();
             })
             .Using(GridFilterMode.Header)
             .Empty("No data found")

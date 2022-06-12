@@ -46,7 +46,8 @@ function guardarElementoVia() {
 function removeElemento(e) {
     const id = e.target.dataset["id"];
     Swal.fire({
-        text: "Desea eliminar el elemento vía: " + e.target.dataset["nombre"] + "? ",
+        text: "¿Desea eliminar el elemento vía: " + e.target.dataset["nombre"] + "? ",
+        title: "Eliminar elemento vía",
         icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -94,6 +95,5 @@ function resetValues() {
 }
 
 $(document).ready(() => {
-    //btnGuardar.addEventListener("click", () => guardarElementoVia());
     $("body").delegate('.btnRemove', 'click', (e) => { removeElemento(e) })
 });

@@ -123,43 +123,55 @@
   <data name="Categoria" xml:space="preserve">
     <value>Categoria</value>
   </data>
+  <data name="Cerrar" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
   <data name="Descripcion" xml:space="preserve">
     <value>Descripción</value>
   </data>
-  <data name="DescripcionObligatorio" xml:space="preserve">
+  <data name="ErrorDescripcionObligatorio" xml:space="preserve">
     <value>El campo descripción es obligatorio</value>
   </data>
-  <data name="FechaAlta" xml:space="preserve">
+  <data name="ErrorLongitudDescripcion" xml:space="preserve">
+    <value>El campo descripción supera la longitud máxima (500 caracteres)</value>
+  </data>
+  <data name="ErrorLongitudTitulo" xml:space="preserve">
+    <value>El campo título supera la longitud máxima (200 caracteres)</value>
+  </data>
+  <data name="ErrorPosicionObligatorio" xml:space="preserve">
+    <value>El campo posición es obligatorio</value>
+  </data>
+  <data name="ErrorTituloObligatorio" xml:space="preserve">
+    <value>El campo título es obligatorio</value>
+  </data>
+  <data name="ErrorValorMaximo" xml:space="preserve">
+    <value>La posición no puede ser mayor a 9999</value>
+  </data>
+  <data name="FechaAltaGrid" xml:space="preserve">
     <value>FECHA ALTA</value>
   </data>
-  <data name="FechaModificacion" xml:space="preserve">
+  <data name="FechaModificacionGrid" xml:space="preserve">
     <value>FECHA DE MODIFICACIÓN</value>
   </data>
   <data name="Guardar" xml:space="preserve">
-    <value>Guardar y publicar</value>
+    <value>Guardar</value>
   </data>
-  <data name="Identificador" xml:space="preserve">
+  <data name="IdentificadorGrid" xml:space="preserve">
     <value>IDENTIFICADOR</value>
-  </data>
-  <data name="Opciones" xml:space="preserve">
-    <value>OPCIONES</value>
   </data>
   <data name="Posicion" xml:space="preserve">
     <value>Posición</value>
   </data>
-  <data name="PosicionObligatorio" xml:space="preserve">
-    <value>El campo posición es obligatorio</value>
+  <data name="PosicionGrid" xml:space="preserve">
+    <value>POSICIÓN</value>
   </data>
-  <data name="PreguntasFrecuentes" xml:space="preserve">
+  <data name="PreguntasFrecuentesGrid" xml:space="preserve">
     <value>PREGUNTA</value>
   </data>
-  <data name="Respuestas" xml:space="preserve">
+  <data name="RespuestasGrid" xml:space="preserve">
     <value>RESPUESTA</value>
   </data>
   <data name="TituloFaq" xml:space="preserve">
     <value>Título FAQ</value>
-  </data>
-  <data name="TituloObligatorio" xml:space="preserve">
-    <value>El campo título es obligatorio</value>
   </data>
 </root>
