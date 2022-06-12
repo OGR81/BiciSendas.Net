@@ -6,17 +6,23 @@ namespace BiciSendas.Areas.Operaciones.Models.Faqs
     [Serializable]
     public class FaqGridVM
     {
-        [Display(Name = nameof(FaqStrings.Identificador), ResourceType = typeof(FaqStrings))]
-        public string? Identificador { get; set; }
+        [Display(Name = nameof(FaqStrings.IdentificadorGrid), ResourceType = typeof(FaqStrings))]
+        public int Identificador { get; set; }
 
-        [Display(Name = nameof(FaqStrings.Nombre), ResourceType = typeof(FaqStrings))]
-        public string? Nombre { get; set; }
-        [Display(Name = nameof(FaqStrings.Estado), ResourceType = typeof(FaqStrings))]
-        public int? Estado { get; set; }
-        [Display(Name = nameof(FaqStrings.FechaModificacion), ResourceType = typeof(FaqStrings))]
-        public int? FechaModificacion { get; set; }
-        [Display(Name = nameof(FaqStrings.Opciones), ResourceType = typeof(FaqStrings))]
-        public string? Opciones { get; set; }
+        [Display(Name = nameof(FaqStrings.PreguntasFrecuentesGrid), ResourceType = typeof(FaqStrings))]
+        public string? Pregunta { get; set; }
+        
+        [Display(Name = nameof(FaqStrings.RespuestasGrid), ResourceType = typeof(FaqStrings))]
+        public string? Respuesta { get; set; }
+
+        [Display(Name = nameof(FaqStrings.FechaModificacionGrid), ResourceType = typeof(FaqStrings))]
+        public DateTime? FechaModificacion { get; set; }
+
+        [Display(Name = nameof(FaqStrings.FechaAltaGrid), ResourceType = typeof(FaqStrings))]
+        public DateTime FechaAlta { get; set; }
+        
+        [Display(Name = nameof(FaqStrings.PosicionGrid), ResourceType = typeof(FaqStrings))]
+        public int? Posicion { get; set; }
 
     }
 }

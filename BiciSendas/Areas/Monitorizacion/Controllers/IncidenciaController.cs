@@ -23,22 +23,22 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
             this.IncidenciaBL = incidenciaBL;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             IncidenciaIndexVM model = new();
  
-            model.Estados = ObtenerComboEstados();
-            incidencias = IncidenciaBL.ObtenerIncidencias().Result;
+            model.Estados = await ObtenerComboEstados();
+            incidencias = await IncidenciaBL.ObtenerIncidencias();
 
             return View(model);
         }
 
         [HttpGet]
-        public JsonResult ObtenerIncidencia(int idIncidencia)
+        public async Task<JsonResult> ObtenerIncidencia(int idIncidencia)
         {
             try
             {
-                Incidencia? incidencia = IncidenciaBL.ObtenerPorId(idIncidencia).Result;
+                Incidencia? incidencia = await IncidenciaBL.ObtenerPorId(idIncidencia);
                 IncidenciaVM? incidenciaVM = MapearIncidenciaToVM(incidencia);
 
                 return Json(incidenciaVM);
@@ -50,14 +50,14 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
         }
 
         [HttpGet]
-        public JsonResult ObtenerFiltrado(IncidenciaIndexVM model)
+        public async Task<JsonResult> ObtenerFiltrado(IncidenciaIndexVM model)
         {
             try
             {
                 IncidenciaFiltro filtro = MapearFiltro(model);
-                List<Incidencia> incidencias = IncidenciaBL.ObtenerFiltrado(filtro).Result;
+                List<Incidencia> incidencias = await IncidenciaBL.ObtenerFiltrado(filtro);
 
-                return Json(new { incidencias = incidencias});
+                return Json(new { incidencias });
             }
             catch(Exception ex)
             {
@@ -65,11 +65,8 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
             }
         }
 
-        private List<IncidenciaGridVM>? MapearIncidenciasToVM(List<Incidencia> incidencias)
+        private static List<IncidenciaGridVM>? MapearIncidenciasToGrid(List<Incidencia> incidencias)
         {
-            if (!incidencias.Any())
-                return null;
-
             List<IncidenciaGridVM> model = new List<IncidenciaGridVM>();
 
             incidencias.ForEach(i =>
@@ -89,10 +86,10 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
             return model;
         }
 
-        private List<SelectListItem> ObtenerComboEstados()
+        private async Task<List<SelectListItem>> ObtenerComboEstados()
         {
             List<SelectListItem> combo = new();
-            var estados = EstadoBL.ObtenerEstados().Result;
+            var estados = await EstadoBL.ObtenerEstados();
 
             combo.Add(new SelectListItem { Value = "-1", Text = "Todos" });
 
@@ -101,7 +98,7 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
             return combo.OrderBy(e=>e.Value).ToList();
         }
 
-        private IncidenciaFiltro MapearFiltro(IncidenciaIndexVM model)
+        private static IncidenciaFiltro MapearFiltro(IncidenciaIndexVM model)
         {
             IncidenciaFiltro filtro = new();
             filtro.Poblacion = model.Poblacion?.Replace("'","´");
@@ -112,7 +109,7 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
             return filtro;
         }
 
-        private IncidenciaVM MapearIncidenciaToVM(Incidencia? incidencia)
+        private static IncidenciaVM MapearIncidenciaToVM(Incidencia? incidencia)
         {
             IncidenciaVM incidenciaVM = new();
             incidenciaVM.TipoIncidencia = incidencia?.TipoIncidencia?.Nombre;
@@ -129,20 +126,18 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult CargarIncidencias(string filtroIndex)
-        {
-            IncidenciaIndexVM filtroVM = new();
-
+        public async Task<PartialViewResult> CargarIncidencias(string filtroIndex)
+        {    
             if (!string.IsNullOrEmpty(filtroIndex))
             {
-                filtroVM = JsonConvert.DeserializeObject<IncidenciaIndexVM>(filtroIndex)!;
+                IncidenciaIndexVM filtroVM = JsonConvert.DeserializeObject<IncidenciaIndexVM>(filtroIndex)!;
                 IncidenciaFiltro filtro = MapearFiltro(filtroVM);
-                incidencias = IncidenciaBL.ObtenerFiltrado(filtro).Result;
+                incidencias = await IncidenciaBL.ObtenerFiltrado(filtro);
             }
 
-            List<IncidenciaGridVM>? items = MapearIncidenciasToVM(incidencias);
+            List<IncidenciaGridVM>? items = MapearIncidenciasToGrid(incidencias);
 
-            return PartialView("_GridIncidencias", items ?? new());
+            return PartialView("_GridIncidencias", items);
         }
     }
 }

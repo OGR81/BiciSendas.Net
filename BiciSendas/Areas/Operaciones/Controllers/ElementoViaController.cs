@@ -25,12 +25,12 @@ namespace BiciSendas.Areas.Operaciones.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult CargarElementosVia()
+        public async Task<PartialViewResult> CargarElementosVia()
         {
-            List<ElementoVia> elementos = ElementoViaBL.ObtenerElementosVia().Result;
+            List<ElementoVia> elementos = await ElementoViaBL.ObtenerElementosVia();
             List<ElementoViaGridVM>? items = MapearElementosViaToVM(elementos);
 
-            return PartialView("_GridElementoVia", items ?? new());
+            return PartialView("_GridElementoVia", items);
         }
 
         [HttpPost]
@@ -69,7 +69,7 @@ namespace BiciSendas.Areas.Operaciones.Controllers
             }
         }
 
-        private ElementoVia MapearElementoViaVMToEntity(ElementoViaIndexVM model)
+        private static ElementoVia MapearElementoViaVMToEntity(ElementoViaIndexVM model)
         {
             ElementoVia elementoVia = new();
             elementoVia.Identificador = model.Identificador?.Replace("'", "´").Trim();
@@ -81,9 +81,6 @@ namespace BiciSendas.Areas.Operaciones.Controllers
 
         private List<ElementoViaGridVM>? MapearElementosViaToVM(List<ElementoVia> elementos)
         {
-            if (!elementos.Any())
-                return null;
-
             List<ElementoViaGridVM> model = new();
 
             elementos.ForEach(e =>

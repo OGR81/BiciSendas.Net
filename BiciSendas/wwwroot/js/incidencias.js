@@ -1,12 +1,8 @@
-﻿const btnBuscar = document.getElementById("btnBuscar");
-const btnBorrar = document.getElementById("btnBorrar");
-const dtpFechaDesde = document.getElementById("FechaDesde");
+﻿const dtpFechaDesde = document.getElementById("FechaDesde");
 const dtpFechaHasta = document.getElementById("FechaHasta");
 const txtPoblacion = document.getElementById("Poblacion");
 const comboEstado = document.getElementById("Estado");
 const tblIncidencias = document.getElementById("tblIncidencias");
-
-
 
 /*
  * Reseteamos los valores del filtro
@@ -43,7 +39,7 @@ function filtrar() {
     //borramos la query al finalizar la busqueda
     new MvcGrid(document.querySelector('.mvc-grid'), {
         url: "/Monitorizacion/Incidencia/CargarIncidencias",
-        query: "model="
+        query: "filtroIndex="
     });
 }
 
@@ -92,9 +88,6 @@ function bindeventBtnVer() {
 
 $(document).ready(function () {
     bindeventBtnVer();
-
-    btnBuscar.addEventListener("click", () => filtrar());
-    btnBorrar.addEventListener("click", () => resetFiltro());
 });
 
 

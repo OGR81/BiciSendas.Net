@@ -1,4 +1,5 @@
 ﻿@using BiciSendas.Resources
+@using NonFactors.Mvc.Grid
 @model BiciSendas.Areas.Operaciones.Models.Faqs.FaqIndexVM
 
 
@@ -6,41 +7,66 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    td {
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+    }
+</style>
+
+
+@section Scripts{
+    <script src="~/js/faq.js"></script>
+}
+
 @{
     ViewData["Title"] = "Faqs";
         
     <div class="container d-flex flex-column">
         <div class="row">
-            <div class="col-lg-1 mt-auto ps-0">
-                @Html.DropDownListFor(m => m.NumPagina, Model.Paginas, new {@class="form-select"})
-            </div>
-            <div class="col-lg-2">
-                @Html.LabelFor(m => m.Categoria, null, new { @class="col-form-label"})
-                @Html.DropDownListFor(m => m.Categoria, Model.Categorias, new{ @class="form-select"})
-            </div>
+            
             <div class="col mt-auto d-md-flex justify-content-md-end pe-0">
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalNuevoFaq"><i class="fa-solid fa-plus"></i> Nuevo</button>
+                <button type="button" id="btnNuevo" class="btn btn-primary" onclick="nuevaFaq()"><i class="fa-solid fa-plus"></i> Nuevo</button>
             </div>
         </div>
     </div>
         
     <div id="ListaFaqs" class="col-xs-12 mt-4">
-        <table class="table">
-          <thead class="table-dark">
-            <tr>
-              <th scope="col" style="font-size:smaller">@FaqStrings.Identificador</th>
-              <th scope="col" style="font-size:smaller">@FaqStrings.Nombre</th>
-              <th scope="col" style="font-size:smaller">@FaqStrings.Estado</th>
-              <th scope="col" style="font-size:smaller">@FaqStrings.FechaModificacion</th>
-              <th scope="col" style="font-size:smaller">@FaqStrings.Opciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-         
-            </tr>
-          </tbody>
-        </table>
+        @(Html
+            .Grid(Model.Faqs!)
+            .Id("gridFaqs")
+            .Build(columns =>
+            {
+                columns.Add(model => model.Identificador);
+                columns.Add(model => model.Pregunta).RenderedAs(model => "<span>" + model.Pregunta + "</span>").Encoded(false);
+                columns.Add(model => model.Respuesta).RenderedAs(model => "<span>" + model.Respuesta + "</span>").Encoded(false);
+                columns.Add(model => model.Posicion);
+                columns.Add(model => model.FechaAlta).Formatted("{0:d}");
+                columns.Add(model => model.FechaModificacion).Formatted("{0:d}");
+                columns.Add(model => "<button class='btnVer btn btn-secondary btn-sm fa-solid fa-magnifying-glass' data-id=\"" + model.Identificador + "\">"+
+                                     "<button class='btnEditar btn btn-secondary btn-sm fa-solid fa-pencil ms-1' data-id=\""+model.Identificador + "\">"+
+                                     "<button class='btnEliminar btn btn-secondary btn-sm fa-solid fa-trash ms-1' data-id=\""+model.Identificador + "\">" )
+                                       .Encoded(false).Css("text-center");
+            })
+            .Empty("No data found")
+            .Pageable(pager =>
+            {
+                pager.PageSizes = new Dictionary<Int32, String> { { 0, "Todo" }, { 5, "5" }, { 10, "10" }, {20, "20"} };
+                pager.ShowPageSizes = true;
+                pager.PagesToDisplay = 5;
+                pager.CurrentPage = 1;
+                pager.RowsPerPage = 5;
+            })
+            .Sortable()
+            .Css("css-classes") // Overwrites all classes with the new ones
+            .AppendCss("table-hover") // Appends classes to the current ones
+        )
     </div>
 
     <!-- Modal -->
@@ -51,28 +77,34 @@
             <h5 class="modal-title" id="staticBackdropLabel">@FaqStrings.AnadirFaq</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-                <div class="row">
-                    <div>
-                        @Html.LabelFor(m => m.Titulo, null, new { @class="col-form-label"})
-                        @Html.EditorFor(m => m.Titulo,  new {htmlAttributes = new {@class="form-control"}})
-                        @Html.ValidationMessageFor(m => m.Titulo)
+          @Html.AntiForgeryToken()
+          <form id="form_faq" class="needs-validation" novalidate method="post">
+              <div class="modal-body">
+              @Html.HiddenFor(m=>m.FaqVM.IdFaq)
+                    <div class="row">
+                        <div>
+                            @Html.LabelFor(m => m.FaqVM.Titulo, null, new { @class="col-form-label"})
+                            @Html.EditorFor(m => m.FaqVM.Titulo,  new {htmlAttributes = new {@class="form-control modal-control"}})
+                        </div>
+                        @Html.ValidationMessageFor(m => m.FaqVM.Titulo, null, new {@class="text-danger"})
+                        <div class="col-lg-3">
+                            @Html.LabelFor(m => m.FaqVM.Posicion, null, new { @class="col-form-label"})
+                            @*@Html.EditorFor(m => m.FaqVM.Posicion,  new {htmlAttributes = new {@class="form-control modal-control"}})*@
+                            @Html.EditorFor(model => model.FaqVM.Posicion, new { htmlAttributes = new { @class="form-control modal-control", @type = "number", @min = "1", @step = "1", @value = "1" }})
+                        </div>
+                        @Html.ValidationMessageFor(m => m.FaqVM.Posicion, null, new {@class="text-danger"})
+                        <div>
+                            @Html.LabelFor(m => m.FaqVM.Descripcion, null, new { @class="col-form-label"})
+                            @Html.TextAreaFor(m => m.FaqVM.Descripcion,  new {@class="form-control modal-control", @style="height:200px"})
+                        </div>
+                        @Html.ValidationMessageFor(m => m.FaqVM.Descripcion, null, new {@class="text-danger"})
                     </div>
-                    <div class="col-lg-2">
-                        @Html.LabelFor(m => m.Posicion, null, new { @class="col-form-label"})
-                        @Html.EditorFor(m => m.Posicion,  new {htmlAttributes = new {@class="form-control"}})
-                        @Html.ValidationMessageFor(m => m.Posicion)
-                    </div>
-                    <div>
-                        @Html.LabelFor(m => m.Descripcion, null, new { @class="col-form-label"})
-                        @Html.TextAreaFor(m => m.Descripcion,  new {@class="form-control", @style="height:200px"})
-                        @Html.ValidationMessageFor(m => m.Descripcion)
-                    </div>
-                </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success">@FaqStrings.Guardar</button>
-          </div>
+              </div>
+              <div class="modal-footer">
+                <button id="btnGuardar" type="submit" class="btn btn-primary" onclick="guardarFaq()">@FaqStrings.Guardar</button>
+                <button id="btnCerrar" class="btn btn-primary" data-bs-dismiss="modal" hidden>@FaqStrings.Cerrar</button>
+              </div>
+          </form>
         </div>
       </div>
     </div>
