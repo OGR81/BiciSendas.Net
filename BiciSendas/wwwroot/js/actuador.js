@@ -1,180 +1,83 @@
-﻿function guardarActuador() {
-    if ($("#form_faq").valid()) {
-        event.preventDefault();
-    }
+﻿const comboTipoActuador = document.getElementById("TipoActuador");
+const tblActuadores = document.getElementById("tblActuadores");
 
-    const model = obtenerModelo();
+/*
+ * Reseteamos los valores del filtro
+ */
+function resetFiltro() {
 
-    if (model.idActuador != 0 && model.posicion != null) {
-        $.ajax({
-            url: "/Operaciones/Actuador/ComprobarPosicion",
-            type: "get",
-            cache: false,
-            data: { idActuador: model.idActuador, posicion: model.posicion },
-        }).done((result) => {
-            if (result) {
-                Swal.fire({
-                    html: "¿Ya existe una pregunta con la misma posición?<br>Si continua, se asignará la posición a la pregunta editada y se borrará la posición a la anterior pregunta",
-                    title: "Actualizar pregunta",
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    cancelButtonText: 'No',
-                    confirmButtonText: 'Sí'
-                }).then((result) => {
-                    if (result.isConfirmed)
-                        guardar(model, true);
-                });
-            } else {
-                guardar(model, false);
-            }
-        });
-    } else {
-        guardar(model, false);
-    }
+    comboTipoActuador.selectedIndex = "0";
+
+    filtrar();
 }
 
-function guardar(model, actualizarPosicion) {
-    $.ajax({
-        url: "/Operaciones/Faq/Grabar",
-        headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-        type: 'POST',
-        cache: false,
-        data: { model: model, actualizarPosicion: actualizarPosicion },
-        success: (result) => {
-            if (result.success) {
-                $("#modalNuevoFaq").modal('hide');
-                new MvcGrid(document.querySelector('.mvc-grid')).reload();
-                toastr.success("Faq guardada");
-            } else {
-                if (result.message != undefined) {
-                    Swal.fire({
-                        icon: 'error',
-                        text: result.message,
-                        timerProgressBar: false,
-                    })
-                }
-            }
-        }
-    })
-}
+/*
+ * Filtra los actuadores según filtro
+ */
+function filtrar() {
+    var model = {
 
-function bindButtonsGrid() {
-    $("body").delegate('.btnVer', 'click', (e) => { verFaq(e) });
-    $("body").delegate('.btnEditar', 'click', (e) => { editarFaq(e) });
-    $("body").delegate('.btnEliminar', 'click', (e) => { eliminarFaq(e) });
-}
+        TipoActuador: comboTipoActuador.value
+        
+    };
 
-function editarFaq(e) {
-    const idFaq = e.target.dataset["id"];
-    obtenerDatos(idFaq);
-    document.getElementById("btnGuardar").hidden = false;
-    document.getElementById("btnCerrar").hidden = true;
+    var grid = new MvcGrid(document.querySelector('.mvc-grid'), {
+        url: "/Operaciones/Actuadores/CargarActuadores",
+        query: "filtroIndex=" + JSON.stringify(model)
+    });
 
-    habilitarDeshabilitarControles(true);
-}
+    //Recarga la lista
+    grid.reload();
+    bindeventBtnVer();
 
-function verFaq(e) {
-    const idFaq = e.target.dataset["id"];
-    obtenerDatos(idFaq);
-    document.getElementById("btnGuardar").hidden = true;
-    document.getElementById("btnCerrar").hidden = false;
-
-    habilitarDeshabilitarControles(false);
-}
-
-function habilitarDeshabilitarControles(edicion) {
-    const elements = document.getElementsByClassName("modal-control");
-
-    if (edicion) {
-        Array.from(elements).forEach(node => node.removeAttribute("readonly"));
-    } else {
-        Array.from(elements).forEach(node => node.setAttribute("readonly", "readonly"));
-    }
-}
-
-function obtenerDatos(idFaq) {
-    $.ajax({
-        url: "/Operaciones/Faq/ObtenerFaq",
-        data: { idFaq: idFaq },
-        type: 'get',
-        cache: false
-    }).done((result) => {
-        $("#modalNuevoFaq").modal("show");
-        cargarDatos(result);
-    }).fail(() => {
-        Swal.fire({
-            icon: 'error',
-            text: 'Error al obtener faq',
-        })
+    //borramos la query al finalizar la busqueda
+    new MvcGrid(document.querySelector('.mvc-grid'), {
+        url: "/Operaciones/Actuadores/CargarActuadores",
+        query: "filtroIndex="
     });
 }
 
-function obtenerModelo() {
-    var model = {
-        idFaq: document.getElementById("FaqVM_IdFaq").value,
-        titulo: document.getElementById("FaqVM_Titulo").value,
-        descripcion: document.getElementById("FaqVM_Descripcion").value,
-        posicion: document.getElementById("FaqVM_Posicion").value
-    };
-
-    return model;
+function mostrarDetalle(e) {
+    mostrarCargando();
+    $.ajax({
+        url: "/Operaciones/Actuadores/ObtenerActuadores",
+        data: { idActuador: e.target.dataset["id"] },
+        type: "get",
+        cache: false
+    }).done((result) => {
+        Swal.close();
+        document.getElementById("tipoInformacion").innerHTML = result.tipoActuador;
+        document.getElementById("descripcion").innerHTML = result.descripcion;
+        $("#modalActuador").modal("show");
+    }).fail(() => {
+        mostrarError();
+    });
 }
 
-function cargarDatos(result) {
-    document.getElementById("FaqVM_IdFaq").value = result.idFaq;
-    document.getElementById("FaqVM_Titulo").value = result.titulo;
-    document.getElementById("FaqVM_Posicion").value = result.posicion;
-    document.getElementById("FaqVM_Descripcion").value = result.descripcion;
-}
-
-function resetDatos() {
-    document.getElementById("FaqVM_IdFaq").value = "";
-    document.getElementById("FaqVM_Titulo").value = "";
-    document.getElementById("FaqVM_Posicion").value = "";
-    document.getElementById("FaqVM_Descripcion").value = "";
-}
-
-function eliminarFaq(e) {
-    const idFaq = e.target.dataset["id"];
-
+function mostrarCargando() {
     Swal.fire({
-        text: "¿Desea eliminar la pregunta seleccionada? ",
-        title: "Eliminar pregunta",
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'No',
-        confirmButtonText: 'Sí'
-    }).then((result) => {
-        if (result.isConfirmed) {
-
-            $.ajax({
-                url: "/Operaciones/Faq/Eliminar",
-                data: { idFaq: idFaq },
-                type: "post",
-                cache: false
-            }).done((result) => {
-                if (result.success) {
-                    toastr.success("Pregunta eliminada");
-                    new MvcGrid(document.querySelector('.mvc-grid')).reload();
-                    resetValues();
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        test: "No se ha podido eliminar la pregunta",
-                        timerProgressBar: false,
-                    })
-                }
-            }).fail((result) => {
-                Swal.fire({
-                    icon: 'error',
-                    text: 'Error: ' + result,
-                    timerProgressBar: false,
-                })
-            });
+        title: 'Cargando...',
+        html: '',
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading()
         }
     })
 }
+
+function mostrarError() {
+    Swal.fire({
+        icon: 'error',
+        text: 'Error al obtener el actuador!',
+    })
+}
+
+function bindeventBtnVer() {
+    //Utilizamos delegate porquel el botón btnVer al finalizar la carga de la página, todavía no es visible
+    //y el bind con 'on' no funciona
+    $("body").delegate('.btnVer', 'click', (e) => { mostrarDetalle(e) })
+}
+
+$(document).ready(function () {
+    bindeventBtnVer();
+});
