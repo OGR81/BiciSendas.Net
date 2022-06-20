@@ -4,15 +4,16 @@
 @{
     @(Html
             .Grid(Model)
+            .Id("gridActuadores")
             .Build(columns =>
             {
                 columns.Add(model => model.Identificador);
                 columns.Add(model => model.Nombre);
                 columns.Add(model => model.TipoActuador);
                 columns.Add(model => model.FechaModificacion);
-                columns.Add(model => "<button class='btnEliminar btn btn-primary fa-solid fa-trash' data-id=\"" + model.Identificador + "\">").Encoded(false).Css("text-center").AsAttributes();
+                columns.Add(model => "<button class='btnVer btn btn-secondary btn-sm fa-solid fa-solid fa-pen' data-id=\"" + model.Identificador + "\">").Encoded(false).Css("text-center").AsAttributes();
             })
-            .Using(GridFilterMode.Header)
+            
             .Empty("No data found")
             .Pageable(pager =>
             {

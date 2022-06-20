@@ -93,7 +93,8 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
 
             combo.Add(new SelectListItem { Value = "-1", Text = "Todos" });
 
-            estados.ForEach(e => combo.Add(new SelectListItem { Value = e.IdEstado.ToString(), Text = e.Descripcion }));
+            if(estados.Any())
+                estados.ForEach(e => combo.Add(new SelectListItem { Value = e.IdEstado.ToString(), Text = e.Descripcion }));
 
             return combo.OrderBy(e=>e.Value).ToList();
         }

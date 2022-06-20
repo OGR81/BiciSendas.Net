@@ -8,12 +8,10 @@ namespace BiciSendas.Areas.Operaciones.Models.Actuadores
     [Serializable]
     public class ActuadorIndexVM
     {       
-        public byte? NumPagina { get; set; }
-        public List<ActuadorGridVM>? Actuadores { get; set; }
-        [Display(Name = nameof(ActuadorStrings.Actuador), ResourceType = typeof(ActuadorStrings))]
+        [Display(Name = nameof(ActuadorStrings.TipoActuadorFiltro), ResourceType = typeof(ActuadorStrings))]
         public int? IdTipoActuador { get; set; }
-        public List<SelectListItem>? TipoActuador { get; set; }
-        public List<SelectListItem>? Paginas { get; set; }
+        public List<SelectListItem>? TipoActuadores { get; set; }
+        public List<ActuadorGridVM>? Actuadores { get; set; }
 
     }
 }

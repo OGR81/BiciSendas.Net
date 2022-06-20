@@ -120,6 +120,9 @@
   <data name="Actuador" xml:space="preserve">
     <value>Actuador</value>
   </data>
+  <data name="Buscar" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
   <data name="Enviar" xml:space="preserve">
     <value>Enviar</value>
   </data>
@@ -137,5 +140,8 @@
   </data>
   <data name="TipoActuador" xml:space="preserve">
     <value>TIPO ACTUADOR</value>
+  </data>
+  <data name="TipoActuadorFiltro" xml:space="preserve">
+    <value>Tipo actuador</value>
   </data>
 </root>

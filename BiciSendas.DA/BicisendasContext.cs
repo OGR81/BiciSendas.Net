@@ -22,6 +22,11 @@ namespace BiciSendas.DA
             modelBuilder.Entity<TipoIncidencia>().HasKey(ti => ti.IdTipoIncidencia);
             modelBuilder.Entity<ElementoVia>().HasKey(ev => ev.IdElementoVia);
             modelBuilder.Entity<Faq>().HasKey(f => f.IdFaq);
+            modelBuilder.Entity<Sensor>().HasKey(s => s.IdSensor);
+            modelBuilder.Entity<Actuador>().HasKey(a => a.IdActuador);
+            modelBuilder.Entity<TipoActuador>().HasKey(ta => ta.IdTipoActuador);
+            modelBuilder.Entity<TipoSensor>().HasKey(ts => ts.IdTipoSensor);
+            modelBuilder.Entity<EstadoSensor>().HasKey(es => es.IdEstadoSensor);
         }
 
         public DbSet<Incidencia> Incidencias { get; set; } = null!;
@@ -31,5 +36,8 @@ namespace BiciSendas.DA
         public DbSet<Faq> Faqs { get; set; } = null!;
         public DbSet<Actuador> Actuadores { get; set; } = null!;
         public DbSet<Sensor> Sensores { get; set; } = null!;
+        public DbSet<TipoActuador> TiposActuadores { get; set; } = null!;
+        public DbSet<EstadoSensor> EstadosSensores { get; set; } = null!;
+        public DbSet<TipoSensor> TiposSensores { get; set; } = null!;
     }
 }

@@ -1,100 +1,130 @@
 ﻿using BiciSendas.Areas.Operaciones.Models.Actuadores;
+using BiciSendas.BL;
+using BiciSendas.DA;
+using BiciSendas.DA.DA;
+using BiciSendas.DA.Entities;
+using BiciSendas.Views.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace BiciSendas.Areas.Operaciones.Controllers
 {
     [Area("Operaciones")]
     public class ActuadorController : Controller
     {
+        private readonly ActuadorBL ActuadorBL;
+        private static List<Actuador> actuadores = new();
+        private readonly TipoActuadorBL TipoActuadorBL;
+        public ActuadorController(TipoActuadorBL tipoActuadorBL, ActuadorBL actuadorBL)
+        {
+            this.TipoActuadorBL = tipoActuadorBL;
+            this.ActuadorBL = actuadorBL;
+        }
 
-        // GET: ActuadorController
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ActuadorIndexVM model = new();
-            model.TipoActuador = new();
-            model.TipoActuador.Add(new SelectListItem { Value = "0", Text = "" });
-            model.TipoActuador.Add(new SelectListItem { Value = "1", Text = "Identificador" });
-            model.TipoActuador.Add(new SelectListItem { Value = "2", Text = "Nombre" });
-            model.TipoActuador.Add(new SelectListItem { Value = "3", Text = "Tipo" });
-            model.TipoActuador.Add(new SelectListItem { Value = "4", Text = "Fecha de moficiación" });
 
-            model.Paginas = new();
-            model.Paginas.Add(new SelectListItem { Value = "10", Text = "10" });
-            model.Paginas.Add(new SelectListItem { Value = "20", Text = "20" });
-            model.Paginas.Add(new SelectListItem { Value = "30", Text = "30" });
-            model.NumPagina = 10;
+            model.TipoActuadores = await ObtenerComboTipoActuador();
+            actuadores = await ActuadorBL.ObtenerActuadores();
 
             return View(model);
         }
 
-        // GET: ActuadorController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: ActuadorController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ActuadorController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [HttpGet]
+        public async Task<JsonResult> ObtenerActuador(int idActuador)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Actuador? actuador = await ActuadorBL.ObtenerPorId(idActuador);
+                ActuadorVM? actuadorVM = MapearActuadorToVM(actuador);
+
+                return Json(actuadorVM);
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return Json(ex);
             }
         }
 
-        // GET: ActuadorController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: ActuadorController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        [HttpGet]
+        public async Task<JsonResult> ObtenerFiltrado(ActuadorIndexVM model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                ActuadorFiltro filtro = MapearFiltro(model);
+                List<Actuador> actuadores = await ActuadorBL.ObtenerFiltrado(filtro);
+
+                return Json(new { actuadores });
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return Json(ex);
             }
         }
 
-        // GET: ActuadorController/Delete/5
-        public ActionResult Delete(int id)
+        private static List<ActuadorGridVM>? MapearActuadoresToGrid(List<Actuador> actuadores)
         {
-            return View();
+            List<ActuadorGridVM> model = new();
+
+            actuadores.ForEach(i =>
+            {
+                ActuadorGridVM actuador = new();
+                actuador.Identificador = i.IdActuador;
+                actuador.Nombre = i.Nombre;
+                actuador.TipoActuador = i.TipoActuador?.Nombre;
+                actuador.FechaModificacion = i.FechaModificacion;
+                
+                model.Add(actuador);
+            });
+
+            return model;
         }
 
-        // POST: ActuadorController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        private async Task<List<SelectListItem>> ObtenerComboTipoActuador()
         {
-            try
+            List<SelectListItem> combo = new();
+            var estados = await TipoActuadorBL.ObtenerTiposActuadores();
+
+            combo.Add(new SelectListItem { Value = "-1", Text = "Todos" });
+
+            if(estados.Any())
+                estados.ForEach(ta => combo.Add(new SelectListItem { Value = ta.IdTipoActuador.ToString(), Text = ta.Nombre }));
+
+            return combo.OrderBy(ta => ta.Value).ToList();
+        }
+
+        private static ActuadorFiltro MapearFiltro(ActuadorIndexVM model)
+        {
+            ActuadorFiltro filtro = new();
+            filtro.IdTipoActuador = model.IdTipoActuador < 0 ? null : model.IdTipoActuador;
+
+            return filtro;
+        }
+
+        private static ActuadorVM MapearActuadorToVM(Actuador? actuador)
+        {
+            ActuadorVM actuadorVM = new();
+            actuadorVM.TipoActuador = actuador?.TipoActuador?.Nombre;
+            actuadorVM.Descripcion = actuador?.Descripcion;
+            
+            return actuadorVM;
+        }
+
+        [HttpGet]
+        public async Task<PartialViewResult> CargarActuadores(string filtroIndex)
+        {
+            if (!string.IsNullOrEmpty(filtroIndex))
             {
-                return RedirectToAction(nameof(Index));
+                ActuadorIndexVM filtroVM = JsonConvert.DeserializeObject<ActuadorIndexVM>(filtroIndex)!;
+                ActuadorFiltro filtro = MapearFiltro(filtroVM);
+                actuadores = await ActuadorBL.ObtenerFiltrado(filtro);
             }
-            catch
-            {
-                return View();
-            }
+
+            List<ActuadorGridVM>? items = MapearActuadoresToGrid(actuadores);
+
+            return PartialView("_GridActuadores", items);
         }
     }
 }

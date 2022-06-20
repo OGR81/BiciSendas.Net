@@ -70,6 +70,15 @@ namespace BiciSendas.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Buscar.
+        /// </summary>
+        public static string Buscar {
+            get {
+                return ResourceManager.GetString("Buscar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Enviar.
         /// </summary>
         public static string Enviar {
@@ -120,6 +129,15 @@ namespace BiciSendas.Resources {
         public static string TipoActuador {
             get {
                 return ResourceManager.GetString("TipoActuador", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tipo actuador.
+        /// </summary>
+        public static string TipoActuadorFiltro {
+            get {
+                return ResourceManager.GetString("TipoActuadorFiltro", resourceCulture);
             }
         }
     }

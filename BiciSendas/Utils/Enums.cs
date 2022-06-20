@@ -17,5 +17,26 @@
             MalaSenalizacion = 4,
             Accidente = 5
         }
+
+        public enum TipoSensor
+        {
+            Radar = 1,
+            Contador = 2,
+            Semaforo = 3,
+            Interseccion = 4
+        }
+        public enum EstadoSen
+        {
+            Activado = 1,
+            Desativado = 2
+        }
+        public enum TipoActuador
+        {
+            Iluminacion = 1,
+            Señalizacion = 2,
+            Advertencia = 3,
+            Peligro = 4
+        }
+
     }
 }

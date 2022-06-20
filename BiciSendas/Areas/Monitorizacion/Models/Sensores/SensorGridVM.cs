@@ -7,20 +7,25 @@ namespace BiciSendas.Areas.Monitorizacion.Models.Sensores
     [Serializable]
     public class SensorGridVM
     {
-        public int? Id { get; set; }
-
+        
         [Display(Name = nameof(SensorStrings.Identificador), ResourceType = typeof(SensorStrings))]
-        public string? Identificador { get; set; }
+        public int Identificador { get; set; }
 
-        [Display(Name = nameof(SensorStrings.Nombre), ResourceType = typeof(SensorStrings))]
-        public string? Nombre { get; set; }
-        [Display(Name = nameof(SensorStrings.Estado), ResourceType = typeof(SensorStrings))]
+        [Display(Name = nameof(SensorStrings.TipoSensor), ResourceType = typeof(SensorStrings))]
+        public string? TipoSensor { get; set; }
+
+        [Display(Name = nameof(SensorStrings.EstadoSensor), ResourceType = typeof(SensorStrings))]
         public string? Estado { get; set; }
-        [Display(Name = nameof(SensorStrings.Categoria), ResourceType = typeof(SensorStrings))]
-        public string? Categoria { get; set; }
-        [Display(Name = nameof(SensorStrings.Coordenadas), ResourceType = typeof(SensorStrings))]
-        public string? Coordenadas { get; set; }
+        [Display(Name = nameof(SensorStrings.Poblacion), ResourceType = typeof(SensorStrings))]
+        public string? Poblacion { get; set; }
+        [Display(Name = nameof(SensorStrings.Direccion), ResourceType = typeof(SensorStrings))]
+        public string? Direccion { get; set; }
         [Display(Name = nameof(SensorStrings.FechaModificacion), ResourceType = typeof(SensorStrings))]
         public DateTime? FechaModificacion { get; set; }
+
+        public int IdEstadoSensor { get; set; }
+
+        public int IdTipoSensor { get; set; }
+        
     }
 }

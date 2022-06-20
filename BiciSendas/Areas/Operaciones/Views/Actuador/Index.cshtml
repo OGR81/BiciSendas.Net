@@ -1,4 +1,5 @@
 ﻿@using BiciSendas.Resources
+@using NonFactors.Mvc.Grid
 @model BiciSendas.Areas.Operaciones.Models.Actuadores.ActuadorIndexVM
 
 @{
@@ -10,12 +11,9 @@
         
     <div class="container d-flex flex-column">
     <div class="row">
-            <div class="col-lg-1 mt-auto ps-0">
-                @Html.DropDownListFor(m => m.NumPagina, Model.Paginas, new {@class="form-select"})
-            </div>
             <div class="col-lg-2">
                 @Html.LabelFor(m => m.IdTipoActuador, null, new { @class="col-form-label"})
-                @Html.DropDownListFor(m => m.IdTipoActuador, Model.TipoActuador, new{ @class="form-select"})
+                @Html.DropDownListFor(m => m.IdTipoActuador, Model.TipoActuadores, new{ @class="form-select"})
             </div>
             <div class="col mt-auto d-md-flex justify-content-md-end pe-0">
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalActuador"><i class="fa-solid fa-plus"></i> Nuevo</button>
@@ -24,8 +22,9 @@
     </div>
         
     <div id="ListaActuadores" class="col-xs-12 mt-4">
-        
+        @Html.AjaxGrid(Url.Action("CargarActuadores", "Actuador", new { Area = "Operaciones" })!)
     </div>
+
     <div class="modal fade" id="modalActuador" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -34,7 +33,9 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-                
+               <div id="descripcion" class="col-lg-12 mt-2">
+
+               </div>  
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-success">@ActuadorStrings.Enviar</button>

@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Categoria" xml:space="preserve">
-    <value>CATEGORÍA</value>
+  <data name="Direccion" xml:space="preserve">
+    <value>DIRECCIÓN</value>
   </data>
-  <data name="Coordenadas" xml:space="preserve">
-    <value>COORDENADAS</value>
-  </data>
-  <data name="Estado" xml:space="preserve">
+  <data name="EstadoSensor" xml:space="preserve">
     <value>ESTADO</value>
+  </data>
+  <data name="EstadoSensorFiltro" xml:space="preserve">
+    <value>Estado</value>
   </data>
   <data name="FechaModificacion" xml:space="preserve">
     <value>FECHA DE MODIFICACIÓN</value>
@@ -132,10 +132,16 @@
   <data name="Identificador" xml:space="preserve">
     <value>IDENTIFICADOR</value>
   </data>
-  <data name="Nombre" xml:space="preserve">
-    <value>NOMBRE</value>
-  </data>
   <data name="Opciones" xml:space="preserve">
     <value>OPCIONES</value>
+  </data>
+  <data name="Poblacion" xml:space="preserve">
+    <value>POBLACIÓN</value>
+  </data>
+  <data name="TipoSensor" xml:space="preserve">
+    <value>TIPO DE SENSOR</value>
+  </data>
+  <data name="TipoSensorfiltro" xml:space="preserve">
+    <value>Tipo sensor</value>
   </data>
 </root>

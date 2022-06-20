@@ -13,12 +13,19 @@ builder.Services.AddScoped<ActuadorDA>();
 builder.Services.AddScoped<ElementoViaDA>();
 builder.Services.AddScoped<FaqDA>();
 builder.Services.AddScoped<SensorDA>();
+builder.Services.AddScoped<TipoSensorDA>();
+builder.Services.AddScoped<EstadoSensorDA>();
+builder.Services.AddScoped<TipoActuadorDA>();
 //BL
 builder.Services.AddScoped<EstadoBL>();
 builder.Services.AddScoped<IncidenciaBL>();
 builder.Services.AddScoped<ElementoViaBL>();
 builder.Services.AddScoped<FaqBL>();
-
+builder.Services.AddScoped<SensorBL>();
+builder.Services.AddScoped<EstadoSensorBL>();
+builder.Services.AddScoped<TipoActuadorBL>();
+builder.Services.AddScoped<ActuadorBL>();
+builder.Services.AddScoped<TipoSensorBL>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

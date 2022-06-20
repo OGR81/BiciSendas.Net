@@ -61,29 +61,29 @@ namespace BiciSendas.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a CATEGORÍA.
+        ///   Busca una cadena traducida similar a DIRECCIÓN.
         /// </summary>
-        public static string Categoria {
+        public static string Direccion {
             get {
-                return ResourceManager.GetString("Categoria", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a COORDENADAS.
-        /// </summary>
-        public static string Coordenadas {
-            get {
-                return ResourceManager.GetString("Coordenadas", resourceCulture);
+                return ResourceManager.GetString("Direccion", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Busca una cadena traducida similar a ESTADO.
         /// </summary>
-        public static string Estado {
+        public static string EstadoSensor {
             get {
-                return ResourceManager.GetString("Estado", resourceCulture);
+                return ResourceManager.GetString("EstadoSensor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Estado.
+        /// </summary>
+        public static string EstadoSensorFiltro {
+            get {
+                return ResourceManager.GetString("EstadoSensorFiltro", resourceCulture);
             }
         }
         
@@ -106,20 +106,38 @@ namespace BiciSendas.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a NOMBRE.
-        /// </summary>
-        public static string Nombre {
-            get {
-                return ResourceManager.GetString("Nombre", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a OPCIONES.
         /// </summary>
         public static string Opciones {
             get {
                 return ResourceManager.GetString("Opciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a POBLACIÓN.
+        /// </summary>
+        public static string Poblacion {
+            get {
+                return ResourceManager.GetString("Poblacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a TIPO DE SENSOR.
+        /// </summary>
+        public static string TipoSensor {
+            get {
+                return ResourceManager.GetString("TipoSensor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tipo sensor.
+        /// </summary>
+        public static string TipoSensorfiltro {
+            get {
+                return ResourceManager.GetString("TipoSensorfiltro", resourceCulture);
             }
         }
     }

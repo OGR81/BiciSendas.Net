@@ -6,20 +6,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+    }
+</style>
+
+@section Scripts {
+    <script src="~/js/sensores.js"></script>
+}   
+
 @{
-    ViewData["Title"] = "Sensor";
-    
+    ViewData["Title"] = "Sensores";
+
     <div class="container d-flex flex-column">
         <div class="row">
             <div class="col-lg-2 ps-0">
-                @Html.LabelFor(m => m.Categorias, null, new { @class="col-form-label"})
-                @Html.DropDownListFor(m => m.Categoria, Model.Categorias, new{ @class="form-select"})
+                @Html.LabelFor(m => m.IdTipoSensor, null, new {@class="col-form-label"})
+                @Html.DropDownListFor(m => m.IdTipoSensor, Model.TipoSensores, new {@class="form-select"})
+            </div>
+            <div class="col-lg-2">
+                @Html.LabelFor(m => m.IdEstadoSensor, null, new {@class="col-form-label"})
+                @Html.DropDownListFor(m => m.IdEstadoSensor, Model.Estados, new {@class="form-select"})
+            </div>
+            <div class="col-lg-3 mt-auto ps-0">
+                <button type="button" id="btnBuscar" class="btn btn-primary" onclick="filtrar()">Buscar</button>
+                <button type="button" id="btnBorrar" class="btn btn-secondary" onclick="resetFiltro()">Borrar filtros</button>
             </div>
         </div>
     </div>
 
-    <div id="ListaSensores" class="col-lg-12 mt-4">
+    <div id="ListaSensores" class="col-xs-12 mt-4">
         @Html.AjaxGrid(Url.Action("CargarSensores", "Sensor", new { Area = "Monitorizacion" })!)
     </div>
-    @*modal gráfico*@
+
+    @* Modal detalle *@
+    <div class="modal fade" id="modalActuador" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="title">
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            
+            <p id="fecha" class="col-lg-12" style="font-size:x-small"></p>
+            <div id="descripcion" class="col-lg-12 mt-2">
+
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
 }

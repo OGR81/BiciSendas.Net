@@ -1,5 +1,9 @@
 ﻿using BiciSendas.Areas.Monitorizacion.Models.Sensores;
+using BiciSendas.BL;
+using BiciSendas.DA;
+using BiciSendas.DA.DA;
 using BiciSendas.DA.Entities;
+using BiciSendas.Views.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -9,195 +13,136 @@ namespace BiciSendas.Areas.Monitorizacion.Controllers
     [Area("Monitorizacion")]
     public class SensorController : Controller
     {
-        // GET: SensorController
-        public ActionResult Index()
+
+        private readonly SensorBL SensorBL;
+        private readonly EstadoSensorBL EstadoSensorBL;
+        private readonly TipoSensorBL TipoSensorBL;
+        private static List<Sensor> sensores = new();
+
+        public SensorController(EstadoSensorBL estadoSensorBL, SensorBL sensorBL, TipoSensorBL tipoSensorBL)
+        {
+            this.EstadoSensorBL = estadoSensorBL;
+            this.SensorBL = sensorBL;
+            this.TipoSensorBL = tipoSensorBL;
+        }
+
+        public async Task<IActionResult> Index()
         {
             SensorIndexVM model = new();
-            model.Categorias = new();
-            model.Categorias.Add(new SelectListItem { Value = "0", Text = "" });
-            model.Categorias.Add(new SelectListItem { Value = "1", Text = "Identificador" });
-            model.Categorias.Add(new SelectListItem { Value = "2", Text = "Tipo" });
-            model.Categorias.Add(new SelectListItem { Value = "3", Text = "Población" });
-            model.Categorias.Add(new SelectListItem { Value = "4", Text = "Dirección" });
-            model.Categorias.Add(new SelectListItem { Value = "5", Text = "Fecha de modificación"});
 
-            model.Sensores = MapListEntityToListGridVM(FakeData());
-
+            model.Estados = await ObtenerComboEstados();
+            sensores = await SensorBL.ObtenerSensores();
+            model.TipoSensores = await ObtenerComboTipoSensor();
             return View(model);
         }
 
-        // GET: SensorController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: SensorController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: SensorController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [HttpGet]
+        public async Task<JsonResult> ObtenerSensor(int idSensor)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Sensor? sensor = await SensorBL.ObtenerPorId(idSensor);
+                SensorVM? sensorVM = MapearSensorToVM(sensor);
+
+                return Json(sensorVM);
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return Json(ex);
             }
         }
-
-        // GET: SensorController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: SensorController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        [HttpGet]
+        public async Task<JsonResult> ObtenerFiltrado(SensorIndexVM model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                SensorFiltro filtro = MapearFiltro(model);
+                List<Sensor> sensores = await SensorBL.ObtenerFiltrado(filtro);
+
+                return Json(new { sensores });
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return Json(ex);
             }
         }
 
-        // GET: SensorController/Delete/5
-        public ActionResult Delete(int id)
+        private static List<SensorGridVM>? MapearSensoresToGrid(List<Sensor> sensores)
         {
-            return View();
-        }
+            List<SensorGridVM> model = new List<SensorGridVM>();
 
-        // POST: SensorController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
+            sensores.ForEach(i =>
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        private List<SensorGridVM> MapListEntityToListGridVM(List<Sensor> sensores)
-        {
-            List<SensorGridVM> list = new();
-
-            if (!sensores.Any())
-                return list;
-
-            sensores.ForEach(s => {
-                SensorGridVM sensorGridVM = new()
-                {
-                    Id = s.Id,
-                    Identificador = s.Identificador,
-                    Nombre = s.Nombre,
-                    Estado = Enum.GetName(typeof(Estado), s.Estado!),
-                    Categoria = Enum.GetName(typeof(Categoria), s.Categoria!),
-                    Coordenadas = s.Coordenadas,
-                    FechaModificacion = s.FechaModificacion
-                };
-
-                list.Add(sensorGridVM);
+                SensorGridVM sensor = new();
+                sensor.Identificador = i.IdSensor;
+                sensor.TipoSensor = i.TipoSensor?.Nombre;
+                sensor.Poblacion = i.Poblacion;
+                sensor.Direccion = i.Direccion;
+                sensor.FechaModificacion = i.FechaModificacion;
+                sensor.Estado = i.EstadoSensor?.Nombre;
+                sensor.IdEstadoSensor = i.IdEstadoSensor;
+                
+                model.Add(sensor);
             });
 
-            return list;
+            return model;
+        }
+
+        private async Task<List<SelectListItem>> ObtenerComboEstados()
+        {
+            List<SelectListItem> combo = new();
+            var estados = await EstadoSensorBL.ObtenerEstados();
+
+            combo.Add(new SelectListItem { Value = "-1", Text = "Todos" });
+
+            estados.ForEach(e => combo.Add(new SelectListItem { Value = e.IdEstadoSensor.ToString(), Text = e.Nombre }));
+
+            return combo.OrderBy(e => e.Value).ToList();
+        }
+        private async Task<List<SelectListItem>> ObtenerComboTipoSensor()
+        {
+            List<SelectListItem> combo = new();
+            var estados = await TipoSensorBL.ObtenerTiposSensores();
+
+            combo.Add(new SelectListItem { Value = "-1", Text = "Todos" });
+
+            estados.ForEach(e => combo.Add(new SelectListItem { Value = e.IdTipoSensor.ToString(), Text = e.Nombre }));
+
+            return combo.OrderBy(e => e.Value).ToList();
+        }
+
+        private static SensorFiltro MapearFiltro(SensorIndexVM model)
+        {
+            SensorFiltro filtro = new();
+            filtro.IdTipoSensor = model.IdTipoSensor < 0 ? null : model.IdTipoSensor;
+            filtro.IdEstado = model.IdEstadoSensor < 0 ? null : model.IdEstadoSensor;
+
+            return filtro;
+        }
+
+        private static SensorVM MapearSensorToVM(Sensor? sensor)
+        {
+            SensorVM sensorVM = new();
+            //sensorVM.TipoSensor = sensor?.TipoSensor?.Nombre;
+            //sensorVM.Descripcion = sensor?.Descripcion;
+            //sensorVM.Fecha = sensor?.FechaModificacion.ToString();
+
+            return sensorVM;
         }
 
         [HttpGet]
-        public PartialViewResult CargarSensores(int idCategoria)
+        public async Task<PartialViewResult> CargarSensores(string filtroIndex)
         {
-            //TODO: Cambiar PartialViewResult por async Task<PartialViewResult>
-            //      Obtener los sensores desde la api y pasarlos a la grid
-            List<SensorGridVM>? items = new();
+            if (!string.IsNullOrEmpty(filtroIndex))
+            {
+                SensorIndexVM filtroVM = JsonConvert.DeserializeObject<SensorIndexVM>(filtroIndex)!;
+                SensorFiltro filtro = MapearFiltro(filtroVM);
+                sensores = await SensorBL.ObtenerFiltrado(filtro);
+            }
+
+            List<SensorGridVM>? items = MapearSensoresToGrid(sensores);
+
             return PartialView("_GridSensores", items);
         }
-
-        #region FAKE DATA
-        public enum Estado {
-            ACTIVO = 1
-        }
-
-        public enum Categoria { 
-            Cat1 = 1
-        }
-
-        public List<Sensor> FakeData()
-        {
-            List<Sensor> sensores = new();
-
-            Sensor sensor = new() { 
-                Identificador = "LT594R",
-                Nombre = "Sen.Semáforo",
-                Estado = 1,
-                Categoria = 1,
-                Coordenadas = "40.712728, -74.006015",
-                FechaModificacion = new DateTime()
-            };
-
-            Sensor sensor1 = new()
-            {
-                Identificador = "LT594R",
-                Nombre = "Sen.Semáforo",
-                Estado = 1,
-                Categoria = 1,
-                Coordenadas = "40.712728, -74.006015",
-                FechaModificacion = new DateTime()
-            };
-
-            Sensor sensor2 = new()
-            {
-                Identificador = "LT594R",
-                Nombre = "Sen.Semáforo",
-                Estado = 1,
-                Categoria = 1,
-                Coordenadas = "40.712728, -74.006015",
-                FechaModificacion = new DateTime()
-            };
-
-            Sensor sensor3 = new()
-            {
-                Identificador = "LT594R",
-                Nombre = "Sen.Semáforo",
-                Estado = 1,
-                Categoria = 1,
-                Coordenadas = "40.712728, -74.006015",
-                FechaModificacion = new DateTime()
-            };
-
-            Sensor sensor4 = new()
-            {
-                Identificador = "LT594R",
-                Nombre = "Sen.Semáforo",
-                Estado = 1,
-                Categoria = 1,
-                Coordenadas = "40.712728, -74.006015",
-                FechaModificacion = new DateTime()
-            };
-
-            sensores.Add(sensor);
-            sensores.Add(sensor2);
-            sensores.Add(sensor3);
-            sensores.Add(sensor4);
-
-            return sensores;
-        }
-        #endregion
     }
 }

@@ -8,14 +8,14 @@ namespace BiciSendas.Areas.Operaciones.Models.Actuadores
     public class ActuadorGridVM
     {
         [Display(Name = nameof(ActuadorStrings.Identificador), ResourceType = typeof(ActuadorStrings))]
-        public string? Identificador { get; set; }
+        public int Identificador { get; set; }
 
         [Display(Name = nameof(ActuadorStrings.Nombre), ResourceType = typeof(ActuadorStrings))]
         public string? Nombre { get; set; }
         [Display(Name = nameof(ActuadorStrings.TipoActuador), ResourceType = typeof(ActuadorStrings))]
-        public int? TipoActuador { get; set; }
+        public string? TipoActuador { get; set; }
         [Display(Name = nameof(ActuadorStrings.FechaModificacion), ResourceType = typeof(ActuadorStrings))]
-        public int? FechaModificacion { get; set; }
+        public DateTime? FechaModificacion { get; set; }
         [Display(Name = nameof(ActuadorStrings.Opciones), ResourceType = typeof(ActuadorStrings))]
         public string? Opciones { get; set; }
         

@@ -4,17 +4,17 @@
 @{
     @(Html
             .Grid(Model)
+            .Id("gridSensores")
             .Build(columns =>
             {
                 columns.Add(model => model.Identificador);
-                columns.Add(model => model.Nombre);
-                columns.Add(model => model.Estado);
-                columns.Add(model => model.Categoria);
-                columns.Add(model => model.Coordenadas);
-                columns.Add(model => model.FechaModificacion);
-                columns.Add(model => "<button class='btnVer btn btn-primary fa-solid fa-chart-column' data-id=\"" + model.Identificador + "\">").Encoded(false).Css("text-center").AsAttributes();
+                columns.Add(model => model.TipoSensor);
+                columns.Add(model => model.Estado).RenderedAs(model => "<span style='" + (model.IdEstadoSensor == 1 ? "color: green" : "color:red") + "'>" + model.Estado + "</span>").Encoded(false);
+                columns.Add(model => model.Poblacion);
+                columns.Add(model => model.Direccion);
+                columns.Add(model => model.FechaModificacion).Formatted("{0:d}");
+                columns.Add(model => "<button class='btnVer btn btn-secondary btn-sm fa-solid fa-solid fa-chart-column' data-id=\"" + model.Identificador + "\">").Encoded(false).Css("text-center").AsAttributes();
             })
-            .Using(GridFilterMode.Header)
             .Empty("No data found")
             .Pageable(pager =>
             {

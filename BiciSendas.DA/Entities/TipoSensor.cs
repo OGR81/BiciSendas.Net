@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace BiciSendas.DA.Entities
 {
     [Serializable]
-    public class BaseEntity
+    public class TipoSensor
     {
-        public int Id { get; set; }
-
+        public int IdTipoSensor { get; set; }
+        public string? Nombre { get; private set; }
     }
 }
